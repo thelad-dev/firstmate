@@ -24,14 +24,18 @@ No Firstmate Prime harness was invented for this task.
 - Package manifest uses the inherited `pi.extensions` key (`prime-agent@0.7.3`'s own `docs/packages.md`).
 - CLI invocation uses flags present in `agent --help`: `--print`, `--output-format stream-json`, `--model`, `--trust`, `--workspace`.
 - `CURSOR_API_KEY` reaches the CLI through the child environment only, never child argv (`agent --help` documents the env var as equivalent to `--api-key`).
-- Unit tests: `npm test` → 18/18 pass.
-- Registration smoke: `npm run e2e:register` registers provider id `cursor`, api `cursor-agent-cli`, slash commands `/cursor-login|status|logout`, and 18 fallback models when discovery fails.
+- Unit tests: `npm test` → 19/19 pass.
+- Registration smoke: `npm run e2e:register` registers provider id `cursor`, api `cursor-agent-cli`, and slash commands `/cursor-login|status|logout`. On a Cursor-authenticated host it registers 196 models from live `agent models`; with discovery forced to fail (`CURSOR_AGENT_PATH=/nonexistent/agent`) it falls back to the 18 static models.
 
-## UNVERIFIED on the 2026-08-18 host
+## Verified against a Cursor-authenticated host (2026-08-18)
 
-- Authenticated `agent models` inventory (CLI reported not logged in).
-- Live NDJSON generation against a Cursor subscription.
-- Interactive `prime-agent model list` while Cursor-authenticated.
+- `agent status` reports the CLI logged in, and `agent models` returns a 204-model inventory.
+- Live NDJSON against a real Cursor subscription model: `prime-agent -e "$CURSOR_PROVIDER_DIR" --provider cursor --model composer-2.5 -p ...` streams and exits 0.
+- Live discovery reaches Prime's model registry: `npm run e2e:register` registers 196 cursor models built from that inventory.
+
+## Still UNVERIFIED
+
+- `prime-agent model list` showing cursor rows. `-e` is only accepted on a run invocation, not before a subcommand, and the extension is not installed as a Prime package on this host, so the subcommand has no cursor provider to list. Live discovery itself is covered by the `e2e:register` row above.
 
 ## Commands that refresh this record
 
