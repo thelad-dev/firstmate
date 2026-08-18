@@ -24,7 +24,7 @@ No Firstmate Prime harness was invented for this task.
 - Package manifest uses the inherited `pi.extensions` key (`prime-agent@0.7.3`'s own `docs/packages.md`).
 - CLI invocation uses flags present in `agent --help`: `--print`, `--output-format stream-json`, `--model`, `--trust`, `--workspace`.
 - `CURSOR_API_KEY` reaches the CLI through the child environment only, never child argv (`agent --help` documents the env var as equivalent to `--api-key`).
-- Unit tests: `npm test` → 19/19 pass.
+- Unit tests: `npm test` → 19/19 pass from a clean clone, after `npm install` (`@earendil-works/pi-ai` is a dev dependency because `lib/stream.ts` imports it at runtime; consumers still get it from their Prime Agent install).
 - Registration smoke: `npm run e2e:register` registers provider id `cursor`, api `cursor-agent-cli`, and slash commands `/cursor-login|status|logout`. On a Cursor-authenticated host it registers 196 models from live `agent models`; with discovery forced to fail (`CURSOR_AGENT_PATH=/nonexistent/agent`) it falls back to the 18 static models.
 
 ## Verified against a Cursor-authenticated host (2026-08-18)
@@ -44,6 +44,7 @@ The clone lives outside this repo; point `CURSOR_PROVIDER_DIR` at wherever you c
 ```bash
 CURSOR_PROVIDER_DIR="${CURSOR_PROVIDER_DIR:-$HOME/workspaces/prime-agent-cursor-provider}"
 cd "$CURSOR_PROVIDER_DIR"
+npm install
 npm test
 npm run e2e:register
 npm run e2e:discovery
