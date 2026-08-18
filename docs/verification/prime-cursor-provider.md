@@ -9,7 +9,7 @@ This is **not** a Firstmate harness adapter record.
 |---|---|
 | Repo | `git@github.com:thelad-dev/prime-agent-cursor-provider.git`, npm name `@thelad-dev/prime-agent-cursor-provider` (clone path is host-local; `$CURSOR_PROVIDER_DIR` below) |
 | Prime Agent | `0.7.3` (globally installed `prime-agent`) |
-| Cursor Agent CLI | `2026.08.11-e8db854` (`agent`) |
+| Cursor Agent CLI | `2026.08.11-e8db854`, invoked as `agent`; [`runtime-backends.md`](runtime-backends.md#cursor-agent-cli) owns the CLI's install tree, binary names, and process identity |
 | Verified | 2026-08-18 |
 
 ## Firstmate harness status
