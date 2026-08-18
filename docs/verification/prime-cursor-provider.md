@@ -7,7 +7,7 @@ This is **not** a Firstmate harness adapter record.
 
 | Field | Value |
 |---|---|
-| Package | `thelad-dev/prime-agent-cursor-provider` (clone path is host-local; `$CURSOR_PROVIDER_DIR` below) |
+| Repo | `git@github.com:thelad-dev/prime-agent-cursor-provider.git`, npm name `@thelad-dev/prime-agent-cursor-provider` (clone path is host-local; `$CURSOR_PROVIDER_DIR` below) |
 | Prime Agent | `0.7.3` (globally installed `prime-agent`) |
 | Cursor Agent CLI | `2026.08.11-e8db854` (`agent`) |
 | Verified | 2026-08-18 |
@@ -15,8 +15,7 @@ This is **not** a Firstmate harness adapter record.
 ## Firstmate harness status
 
 `kunchenguid/firstmate#1966` (Prime harness) is closed and not merged in this checkout.
-`AGENTS.md` and `bin/fm-harness.sh` do not list `prime`.
-No Firstmate Prime harness was invented for this task.
+`AGENTS.md` and `bin/fm-harness.sh` do not list `prime`, so firstmate has no Prime harness adapter to verify.
 
 ## Verified facts
 
@@ -25,7 +24,7 @@ No Firstmate Prime harness was invented for this task.
 - CLI invocation uses flags present in `agent --help`: `--print`, `--output-format stream-json`, `--model`, `--trust`, `--workspace`.
 - `CURSOR_API_KEY` reaches the CLI through the child environment only, never child argv (`agent --help` documents the env var as equivalent to `--api-key`).
 - Unit tests: `npm test` → 19/19 pass from a clean clone, after `npm install` (`@earendil-works/pi-ai` is a dev dependency because `lib/stream.ts` imports it at runtime; consumers still get it from their Prime Agent install).
-- Registration smoke: `npm run e2e:register` registers provider id `cursor`, api `cursor-agent-cli`, and slash commands `/cursor-login|status|logout`. On a Cursor-authenticated host it registers 196 models from live `agent models`; with discovery forced to fail (`CURSOR_AGENT_PATH=/nonexistent/agent`) it falls back to the 18 static models.
+- Registration smoke: `npm run e2e:register` registers provider id `cursor`, api `cursor-agent-cli`, and slash commands `/cursor-login|status|logout`. With discovery forced to fail (`CURSOR_AGENT_PATH=/nonexistent/agent`) it falls back to the 18 static models; the live-discovery count is recorded in the section below.
 
 ## Verified against a Cursor-authenticated host (2026-08-18)
 
