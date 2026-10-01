@@ -1,0 +1,37 @@
+Product-level probe of fm_harness_process_matches
+Intent: bare interpreter (node/python) must identify harness by argv path component
+Base (before): f593060312a48dab651138e6e705147358eba5ce
+Head (after):  55e94a691b39c9a7b0078d8809f71c5c832f5f25
+
+=== BEFORE fix ===
+got    claude     verdict  shape
+--------------------------------------------------------------------------------
+MISS   claude=0   FAIL     node node /home/u/.local/lib/node_modules/@mariozechner/pi/bin/pi --mode rpc
+MATCH  claude=1   PASS     node node /home/u/.local/lib/node_modules/bin/claude --resume
+MISS   claude=0   FAIL     node node /home/u/.local/lib/node_modules/@mariozechner/pi/cli.js --mode rpc
+MATCH  claude=1   PASS     node node /home/u/.local/lib/node_modules/@anthropic-ai/claude/cli.js --resume
+MISS   claude=0   FAIL     node node /home/u/bin/pi
+MISS   claude=0   PASS     node node /opt/some-tool/index.js --port 8080
+MATCH  claude=0   PASS     python python /home/u/.local/bin/codex
+MATCH  claude=0   PASS     python3 python3 /usr/local/lib/python/site-packages/kimi/cli.py
+summary: 5 pass, 3 fail
+
+=== AFTER fix ===
+got    claude     verdict  shape
+--------------------------------------------------------------------------------
+MATCH  claude=0   PASS     node node /home/u/.local/lib/node_modules/@mariozechner/pi/bin/pi --mode rpc
+MATCH  claude=1   PASS     node node /home/u/.local/lib/node_modules/bin/claude --resume
+MATCH  claude=0   PASS     node node /home/u/.local/lib/node_modules/@mariozechner/pi/cli.js --mode rpc
+MATCH  claude=1   PASS     node node /home/u/.local/lib/node_modules/@anthropic-ai/claude/cli.js --resume
+MATCH  claude=0   PASS     node node /home/u/bin/pi
+MISS   claude=0   PASS     node node /opt/some-tool/index.js --port 8080
+MATCH  claude=0   PASS     python python /home/u/.local/bin/codex
+MATCH  claude=0   PASS     python3 python3 /usr/local/lib/python/site-packages/kimi/cli.py
+summary: 8 pass, 0 fail
+
+before_rc=1 after_rc=0
+
+Interpretation:
+- BEFORE misses node .../bin/pi and node .../pi/cli.js because ^pi$ cannot match the full args blob.
+- AFTER matches those shapes via per-token fm_harness_path_name, sets FM_HARNESS_IS_CLAUDE for claude tokens,
+  and still rejects unrelated node scripts. Full-string fallback remains for unanchored names (codex/kimi/claude).
