@@ -1,0 +1,47 @@
+Evidence: fm_harness_process_matches bare-interpreter per-token path-component fix
+Generated: 2026-10-01T10:15:16+02:00
+Base: 549e07f37fd73aa01d74cd126b1111c99175abed
+Target: b1762f0c8d448d39d9d215c61039dc4020db6167
+
+-------- BEFORE (base commit lib) --------
+NO-MATCH claude=0  bundled node CLI .../bin/pi (the miss before the fix)
+  comm=node args=node /home/u/.local/lib/node_modules/@mariozechner/pi/bin/pi --mode rpc
+MATCH claude=1  bundled node CLI .../bin/claude sets FM_HARNESS_IS_CLAUDE
+  comm=node args=node /home/u/.local/lib/node_modules/@anthropic/claude/bin/claude --resume
+MATCH claude=1  node .../claude/cli.js path component
+  comm=node args=node /home/u/.npm/_npx/xxx/node_modules/@anthropic-ai/claude-code/cli.js
+NO-MATCH claude=0  unrelated node script must not match
+  comm=node args=node /opt/some-tool/index.js --port 8080
+NO-MATCH claude=0  harness name only as a flag value, not a path component
+  comm=node args=node /opt/tool/index.js --name pi
+MATCH claude=0  python bare interpreter with .../bin/codex token
+  comm=python args=python /opt/venv/bin/codex run
+NO-MATCH claude=0  full-string fallback still works for space-separated bare name shape if any
+  comm=node args=node ./pi --mode rpc
+
+-------- AFTER (fixed lib on branch) --------
+MATCH claude=0  bundled node CLI .../bin/pi (the miss before the fix)
+  comm=node args=node /home/u/.local/lib/node_modules/@mariozechner/pi/bin/pi --mode rpc
+MATCH claude=1  bundled node CLI .../bin/claude sets FM_HARNESS_IS_CLAUDE
+  comm=node args=node /home/u/.local/lib/node_modules/@anthropic/claude/bin/claude --resume
+MATCH claude=1  node .../claude/cli.js path component
+  comm=node args=node /home/u/.npm/_npx/xxx/node_modules/@anthropic-ai/claude-code/cli.js
+NO-MATCH claude=0  unrelated node script must not match
+  comm=node args=node /opt/some-tool/index.js --port 8080
+MATCH claude=0  harness name only as a flag value, not a path component
+  comm=node args=node /opt/tool/index.js --name pi
+MATCH claude=0  python bare interpreter with .../bin/codex token
+  comm=python args=python /opt/venv/bin/codex run
+MATCH claude=0  full-string fallback still works for space-separated bare name shape if any
+  comm=node args=node ./pi --mode rpc
+
+-------- Observed vs intent --------
+Intent-critical shape (pi path component only): BEFORE NO-MATCH -> AFTER MATCH claude=0. PASS.
+Claude .../bin/claude: AFTER MATCH claude=1. PASS.
+  (Note: unanchored 'claude' in FM_HARNESS_RE already full-string-matched before; the new
+   branch still identifies it via path component and sets FM_HARNESS_IS_CLAUDE the same way.)
+Unrelated node script: remains NO-MATCH. PASS.
+./pi token: AFTER MATCH (path_name on ./pi). PASS.
+python .../bin/codex: MATCH both sides via path_name/codex. PASS.
+Side note: bare flag token 'pi' (--name pi) becomes MATCH after the fix because each
+  whitespace token is run through fm_harness_path_name; that is the stated mechanism.

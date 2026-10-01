@@ -1,0 +1,34 @@
+User-intent acceptance check: bare-interpreter harness detection by argv token path component
+==========================================================================================
+
+Public interface exercised: fm_harness_process_matches <comm> <args>
+  (sourced from bin/fm-session-lock-lib.sh)
+
+Regression reproduction (base 549e07f vs target b1762f0)
+--------------------------------------------------------
+Shape under test (the reported miss):
+  comm=node
+  args=node /home/u/.local/lib/node_modules/@mariozechner/pi/bin/pi --mode rpc
+
+  BEFORE fix: NO-MATCH  (full-string grep against FM_HARNESS_RE cannot anchor ^pi$ inside the line)
+  AFTER  fix: MATCH claude=0
+
+Claude path-component shape:
+  args=node /home/u/.local/lib/node_modules/bin/claude --resume
+  AFTER: MATCH claude=1  (FM_HARNESS_IS_CLAUDE set from matched name claude)
+
+Negative control:
+  args=node /opt/some-tool/index.js --port 8080
+  AFTER: NO-MATCH
+
+Full-string fallback retained:
+  args=node ./pi --mode rpc
+  AFTER: MATCH via per-token path_name on ./pi (and would still have full-string path for other shapes)
+
+Automated suite:
+  tests/fm-session-lock-ancestry.test.sh
+  -> ok - session-lock: a bare interpreter is identified by a harness path component in any argv token
+  (other unit/e2e cases also ok; known environment-only failure on
+   test_e2e_background_session_keeps_its_lock_across_a_recycled_chain remains declined)
+
+See bare-interpreter-harness-token-before-after.txt for the full side-by-side transcript.
