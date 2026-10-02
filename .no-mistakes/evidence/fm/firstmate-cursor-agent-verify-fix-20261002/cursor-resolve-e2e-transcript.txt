@@ -1,22 +1,38 @@
-=== Host scenario (simulated) ===
-PATH preferred: /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/bin/cursor-agent -> /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/share/cursor-agent/versions/broken/cursor-agent
-PATH fallback:  /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/bin/agent -> /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/share/cursor-agent/versions/good/cursor-agent
+=== USER-REPORTED FAILURE SHAPE (fixture PATH) ===
+PATH prefers broken cursor-agent, then working agent:
+total 16
+drwxr-xr-x 2 ladwein ladwein 4096 Oct  3 00:00 .
+drwxr-xr-x 6 ladwein ladwein 4096 Oct  3 00:00 ..
+lrwxrwxrwx 1 ladwein ladwein  132 Oct  3 00:00 agent -> /home/ladwein/.no-mistakes/evidence/01M3Z9XM25FA5F8BAC9SVB0FHV/demo-fixture/share/cursor-agent/versions/good-2026.10.01/cursor-agent
+lrwxrwxrwx 1 ladwein ladwein  134 Oct  3 00:00 cursor-agent -> /home/ladwein/.no-mistakes/evidence/01M3Z9XM25FA5F8BAC9SVB0FHV/demo-fixture/share/cursor-agent/versions/broken-2026.09.15/cursor-agent
 
-=== Direct run of preferred binary (what captain saw) ===
-exit=1
+--- broken preferred name: cursor-agent --help ---
+Error: No Cursor IDE installation found. Use 'cursor agent' or 'agent' to run the agent.
+(exit 1)
 
-=== Direct run of working agent ===
+--- working alias: agent --help ---
+Usage: agent [options] [command] [prompt...]
+
 Start the Cursor Agent
-exit=0
 
-=== firstmate resolution (fm_cursor_resolve_binary) ===
-resolved=/home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/bin/agent
-basename=agent
+=== PRE-FIX resolve (base 87fa81b8) ===
+RESOLVED: /home/ladwein/.no-mistakes/evidence/01M3Z9XM25FA5F8BAC9SVB0FHV/demo-fixture/bin/cursor-agent
+verify cursor-agent:
+ACCEPT
+verify agent:
+ACCEPT
 
-=== verify each candidate ===
-verify cursor-agent: REFUSE (expected)
-verify agent: ACCEPT (expected)
+=== POST-FIX resolve (HEAD) ===
+RESOLVED: /home/ladwein/.no-mistakes/evidence/01M3Z9XM25FA5F8BAC9SVB0FHV/demo-fixture/bin/agent
+verify cursor-agent:
+REFUSE
+verify agent:
+ACCEPT
 
-=== launch probe via resolved binary ===
+=== LIVE HOST resolve (both working) ===
+RESOLVED: /home/ladwein/.local/bin/cursor-agent
+Usage: agent [options] [command] [prompt...]
+
 Start the Cursor Agent
-launch_ok=yes
+
+Arguments:

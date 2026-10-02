@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "Usage: agent [options] [command] [prompt...]"
+echo
+echo "Start the Cursor Agent"
+exit 0
