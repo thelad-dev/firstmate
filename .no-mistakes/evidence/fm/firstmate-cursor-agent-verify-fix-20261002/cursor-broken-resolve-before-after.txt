@@ -1,0 +1,11 @@
+=== Counterfactual: name-only accept (pre-fix behavior) ===
+old name-only pick: /tmp/tmp.y1jgYVowcx/bin/cursor-agent
+--- what that binary does when launched ---
+Error: No Cursor IDE installation found. Use 'cursor agent' or 'agent' to run the agent.
+launch exit:1
+
+=== Fixed resolve pick and launch probe ---
+new resolve pick: /tmp/tmp.y1jgYVowcx/bin/agent
+Usage: agent [options]
+Start the Cursor Agent
+launch exit:0

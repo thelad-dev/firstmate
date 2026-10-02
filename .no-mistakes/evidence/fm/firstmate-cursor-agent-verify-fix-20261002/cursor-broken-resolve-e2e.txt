@@ -1,0 +1,25 @@
+=== Fixture PATH layout (reproduces reported failure mode) ===
+total 16
+drwxr-xr-x 2 ladwein ladwein 4096 Oct  2 08:32 .
+drwx------ 4 ladwein ladwein 4096 Oct  2 08:32 ..
+lrwxrwxrwx 1 ladwein ladwein   79 Oct  2 08:32 agent -> /tmp/tmp.y1jgYVowcx/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+lrwxrwxrwx 1 ladwein ladwein   79 Oct  2 08:32 cursor-agent -> /tmp/tmp.y1jgYVowcx/share/cursor-agent/versions/2026.09.15-d2fe57e/cursor-agent
+
+=== Running broken cursor-agent (what old verify would launch) ===
+exit:1
+
+=== Running working agent alias ===
+Usage: agent [options]
+Start the Cursor Agent
+exit:0
+
+=== Structural identity of broken cursor-agent ===
+fm_cursor_path_is_cursor: YES (name/install tree matches - old code would accept)
+fm_cursor_verify_executable(cursor-agent): REJECT (fixed)
+fm_cursor_verify_executable(agent): ACCEPT
+
+=== fm_cursor_resolve_binary under this PATH ===
+resolved='/tmp/tmp.y1jgYVowcx/bin/agent'
+exit:0
+
+RESULT: PASS - resolve skipped broken cursor-agent and chose working agent

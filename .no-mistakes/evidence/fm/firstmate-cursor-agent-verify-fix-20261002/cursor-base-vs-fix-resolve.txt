@@ -1,0 +1,7 @@
+=== BASE commit verify/resolve (pre-fix) ===
+old verify(broken cursor-agent): ACCEPT
+old resolve: /tmp/tmp.7APWlwScYg/bin/cursor-agent (exit:0)
+
+=== TARGET commit verify/resolve (fix) ===
+new verify(broken cursor-agent): REJECT
+new resolve: /tmp/tmp.7APWlwScYg/bin/agent (exit:0)

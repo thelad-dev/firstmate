@@ -1,0 +1,12 @@
+=== Live host PATH resolution (post-installer state on this machine) ===
+command -v cursor-agent: /home/ladwein/.local/bin/cursor-agent
+command -v agent: /home/ladwein/.local/bin/agent
+cursor-agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+fm_cursor_resolve_binary -> /home/ladwein/.local/bin/cursor-agent
+Usage: agent [options] [command] [prompt...]
+
+Start the Cursor Agent
+
+Arguments:
+help exit:0

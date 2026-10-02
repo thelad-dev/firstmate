@@ -1,0 +1,49 @@
+=== Real host broken Cursor binary (exact reported error) ===
+broken path: /home/ladwein/.local/share/cursor-agent/versions/2026.09.15-d2fe57e/cursor-agent
+good path:   /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+/home/ladwein/.local/share/cursor-agent/versions/2026.09.15-d2fe57e/cursor-agent: POSIX shell script, ASCII text executable
+/home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent: Bourne-Again shell script, ASCII text executable
+
+--- broken --help ---
+Error: No Cursor IDE installation found. Use 'cursor agent' or 'agent' to run the agent.
+Or, install Cursor at https://cursor.com/download
+exit:1
+
+--- good --help (first 8 lines) ---
+Usage: agent [options] [command] [prompt...]
+
+Start the Cursor Agent
+
+Arguments:
+  prompt                       Initial prompt for the agent
+
+Options:
+exit:0
+
+=== PATH for this demo ===
+PATH=/tmp/tmp.LgjMpY6RQk/bin:/usr/bin:/bin
+total 16
+drwxr-xr-x 2 ladwein ladwein 4096 Oct  2 08:33 .
+drwx------ 4 ladwein ladwein 4096 Oct  2 08:33 ..
+lrwxrwxrwx 1 ladwein ladwein   80 Oct  2 08:33 agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+lrwxrwxrwx 1 ladwein ladwein   80 Oct  2 08:33 cursor-agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.09.15-d2fe57e/cursor-agent
+
+=== Structural vs verify on REAL broken binary ===
+path_is_cursor(broken): YES
+verify(broken): REJECT
+path_is_cursor(agent->good): YES
+verify(agent->good): ACCEPT
+
+=== fm_cursor_resolve_binary ===
+resolved=/tmp/tmp.LgjMpY6RQk/bin/agent
+exit=0
+
+RESULT: PASS — firstmate skips the real broken cursor-agent and launches the working agent alias
+
+=== Confirmed resolved binary still runs Cursor Agent CLI ===
+Usage: agent [options] [command] [prompt...]
+
+Start the Cursor Agent
+
+Arguments:
+exit:0
