@@ -1,0 +1,34 @@
+=== Live host Cursor binaries (read-only observation) ===
+command -v cursor-agent: /home/ladwein/.local/bin/cursor-agent
+command -v agent: /home/ladwein/.local/bin/agent
+
+--- cursor-agent at /home/ladwein/.local/bin/cursor-agent ---
+lrwxrwxrwx 1 ladwein ladwein 80 Oct  2 08:16 /home/ladwein/.local/bin/cursor-agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+/home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+probe --help (first 5 lines / exit):
+Usage: agent [options] [command] [prompt...]
+
+Start the Cursor Agent
+
+Arguments:
+  prompt                       Initial prompt for the agent
+
+Options:
+(exit 0)
+
+--- agent at /home/ladwein/.local/bin/agent ---
+lrwxrwxrwx 1 ladwein ladwein 80 Oct  2 08:16 /home/ladwein/.local/bin/agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+/home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+probe --help (first 5 lines / exit):
+Usage: agent [options] [command] [prompt...]
+
+Start the Cursor Agent
+
+Arguments:
+  prompt                       Initial prompt for the agent
+
+Options:
+(exit 0)
+
+--- fm_cursor_resolve_binary on live PATH ---
+resolved: /home/ladwein/.local/bin/cursor-agent

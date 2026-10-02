@@ -1,0 +1,28 @@
+=== Host-style end-user Cursor resolve demo ===
+PATH bin contents:
+total 16
+drwxr-xr-x 2 ladwein ladwein 4096 Oct  2 19:30 .
+drwxr-xr-x 4 ladwein ladwein 4096 Oct  2 19:30 ..
+lrwxrwxrwx 1 ladwein ladwein  129 Oct  2 19:30 agent -> /home/ladwein/.no-mistakes/evidence/01M3YTG9JYM2HQYSETA9C6BVA2/demo-host/share/cursor-agent/versions/2026.10.01-good/cursor-agent
+lrwxrwxrwx 1 ladwein ladwein  131 Oct  2 19:30 cursor-agent -> /home/ladwein/.no-mistakes/evidence/01M3YTG9JYM2HQYSETA9C6BVA2/demo-host/share/cursor-agent/versions/2026.09.15-broken/cursor-agent
+
+--- What preferred cursor-agent does when probed (the reported failure) ---
+Error: No Cursor IDE installation found. Use 'cursor agent' or 'agent' to run the agent.
+(exit 1)
+
+--- What working agent does ---
+Start the Cursor Agent
+
+--- Pre-fix behavior (structure/name alone accepts broken cursor-agent) ---
+old resolver picked: /home/ladwein/.no-mistakes/evidence/01M3YTG9JYM2HQYSETA9C6BVA2/demo-host/bin/cursor-agent
+old would launch and fail with:
+Error: No Cursor IDE installation found. Use 'cursor agent' or 'agent' to run the agent.
+
+--- Post-fix fm_cursor_resolve_binary ---
+new resolver picked: /home/ladwein/.no-mistakes/evidence/01M3YTG9JYM2HQYSETA9C6BVA2/demo-host/bin/agent
+verify broken preferred name:
+broken cursor-agent refused (exit 1)
+verify working agent:
+working agent accepted
+launching resolved binary with a dummy arg shows working CLI:
+agent-cli-ok args:run-task
