@@ -1,0 +1,39 @@
+=== Live Grok 4.7 capture that blocked exit/relaunch ===
+  ╭────────────────────────────────────────╮
+  │ ❯                                      │
+  ╰───── Grok 4.7 (high) · always-approve ─╯
+  [status line: exit 127]
+  Shift+Tab:mode  │  Ctrl+.:shortcuts
+
+=== Classifier verdicts (must be empty so exit/relaunch may type /exit) ===
+ok - herdr (live shape) -> empty
+ok - zellij -> empty
+ok - cmux/orca plain -> empty
+ok - tmux cursor on prompt -> empty
+
+=== Safety: unclaimed footer rows must stay unknown (refuse exit) ===
+ok - activity flush under box -> unknown
+ok - script stdout not furniture -> unknown
+ok - dialog under status error -> unknown
+ok - shortcuts-prefix script -> unknown
+
+=== Typed content under footer must stay pending ===
+ok - typed under status footer -> pending
+
+=== All Grok-rendered status-line failures empty ===
+ok - status line: exit 127 -> empty
+ok - status line: timed out -> empty
+ok - status line: killed by signal -> empty
+ok - status line: could not start the script: missing binary -> empty
+
+=== Ctrl+x shortcuts chord empty ===
+ok - Ctrl+x with status -> empty
+ok - Ctrl+x alone -> empty
+
+=== middle-dot title alone empty ===
+ok - aligned middle-dot title alone -> empty
+
+=== Control-plane gate simulation (fm-control exit/relaunch composer check) ===
+ok - composer_state=empty; control would type /exit (relaunch/exit allowed)
+
+ALL CHECKS PASSED

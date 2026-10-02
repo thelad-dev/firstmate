@@ -1,0 +1,29 @@
+Live capture (idle Grok 4.7 with status-line exit 127 + shortcuts) that blocked
+bin/fm-control.sh <task-id> exit|relaunch:
+
+  ╭────────────────────────────────────────╮
+  │ ❯                                      │
+  ╰───── Grok 4.7 (high) · always-approve ─╯
+  [status line: exit 127]
+  Shift+Tab:mode  │  Ctrl+.:shortcuts
+
+--- BEFORE fix (base f50e9cdba5e1cd1bb108e38f101525b862e029e8) ---
+idle+status+shortcuts -> unknown
+middle-dot title alone -> unknown
+typed under footer     -> unknown
+activity under box     -> unknown
+control gate: error: task <id>'s composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+
+--- AFTER fix (head a6384a1399525b4caf88cc0cf25f9ec390f1afc6) ---
+idle+status+shortcuts -> empty
+middle-dot title alone -> empty
+typed under footer     -> pending
+activity under box     -> unknown
+control gate: composer empty; exit/relaunch may type /exit
+
+--- Regression contract ---
+before idle was unknown (matches reported refusal)
+after idle is empty (exit/relaunch allowed)
+after typed stays pending (will not concatenate /exit onto draft)
+after activity stays unknown (unclaimed footer still refuses)
+REGRESSION PROVEN: unknown->empty for idle Grok status-line footer; safety preserved
