@@ -1,0 +1,22 @@
+=== Host scenario (simulated) ===
+PATH preferred: /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/bin/cursor-agent -> /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/share/cursor-agent/versions/broken/cursor-agent
+PATH fallback:  /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/bin/agent -> /home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/share/cursor-agent/versions/good/cursor-agent
+
+=== Direct run of preferred binary (what captain saw) ===
+exit=1
+
+=== Direct run of working agent ===
+Start the Cursor Agent
+exit=0
+
+=== firstmate resolution (fm_cursor_resolve_binary) ===
+resolved=/home/ladwein/.no-mistakes/evidence/01M3YEBZ92XDDR7PA5AHACBTHK/cursor-resolve-demo/bin/agent
+basename=agent
+
+=== verify each candidate ===
+verify cursor-agent: REFUSE (expected)
+verify agent: ACCEPT (expected)
+
+=== launch probe via resolved binary ===
+Start the Cursor Agent
+launch_ok=yes

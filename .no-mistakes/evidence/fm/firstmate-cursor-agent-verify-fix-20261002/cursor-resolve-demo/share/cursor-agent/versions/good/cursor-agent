@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "${1:-}" = --help ]; then
+  echo "Start the Cursor Agent"
+  exit 0
+fi
+echo "agent-cli ok args:$*"
+exit 0

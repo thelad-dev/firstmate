@@ -1,0 +1,19 @@
+=== Real host Cursor binaries (read-only observation) ===
+/home/ladwein/.local/bin/cursor-agent
+/home/ladwein/.local/bin/agent
+/home/ladwein/.local/bin/cursor
+
+--- cursor-agent @ /home/ladwein/.local/bin/cursor-agent ---
+lrwxrwxrwx 1 ladwein ladwein 80 Oct  2 08:16 /home/ladwein/.local/bin/cursor-agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+/home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+--- agent @ /home/ladwein/.local/bin/agent ---
+lrwxrwxrwx 1 ladwein ladwein 80 Oct  2 08:16 /home/ladwein/.local/bin/agent -> /home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+/home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+--- cursor @ /home/ladwein/.local/bin/cursor ---
+lrwxrwxrwx 1 ladwein ladwein 37 Sep 15 12:04 /home/ladwein/.local/bin/cursor -> /home/ladwein/.local/bin/cursor-agent
+/home/ladwein/.local/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+
+=== firstmate resolve on this host ===
+resolved=/home/ladwein/.local/bin/cursor-agent
+verify:
+ACCEPT
