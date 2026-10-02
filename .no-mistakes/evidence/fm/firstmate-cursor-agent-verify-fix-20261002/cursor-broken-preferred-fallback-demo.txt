@@ -1,0 +1,27 @@
+=== End-user reproduction: broken preferred cursor-agent, working agent ===
+
+# Layout (mirrors reported host condition)
+lrwxrwxrwx 1 ladwein ladwein 79 Oct  2 11:21 /tmp/tmp.rgDUu1tbSw/bin/agent -> /tmp/tmp.rgDUu1tbSw/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+lrwxrwxrwx 1 ladwein ladwein 79 Oct  2 11:21 /tmp/tmp.rgDUu1tbSw/bin/cursor-agent -> /tmp/tmp.rgDUu1tbSw/share/cursor-agent/versions/2026.09.15-d2fe57e/cursor-agent
+cursor-agent -> /tmp/tmp.rgDUu1tbSw/share/cursor-agent/versions/2026.09.15-d2fe57e/cursor-agent
+agent        -> /tmp/tmp.rgDUu1tbSw/share/cursor-agent/versions/2026.10.01-e373342/cursor-agent
+
+# What happens when you run the preferred name (pre-fix failure mode)
+$ cursor-agent --help
+Error: No Cursor IDE installation found. Use 'cursor agent' or 'agent' to run the agent.
+(exit 1)
+
+# What happens when you run the working alias
+$ agent --help
+Start the Cursor Agent
+Usage: agent [options]
+
+# firstmate resolution with the fixed library
+$ fm_cursor_resolve_binary
+/tmp/tmp.rgDUu1tbSw/bin/agent
+
+# verify each candidate
+fm_cursor_verify_executable cursor-agent: REFUSE
+fm_cursor_verify_executable agent: ACCEPT
+
+RESULT: PASS — firstmate skipped the broken preferred name and chose the working agent

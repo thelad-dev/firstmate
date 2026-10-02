@@ -1,0 +1,15 @@
+=== Contrast: name-only accept (old verify) vs run-verify (new) ===
+
+Structural evidence on broken preferred name:
+  path_is_cursor: YES (name/install-tree match)
+Old behavior would accept cursor-agent by name alone (case cursor-agent) return 0
+  => would pick: /tmp/tmp.rgDUu1tbSw/bin/cursor-agent
+  => spawn would surface: Error: No Cursor IDE installation found...
+
+New verify_executable on broken preferred name:
+  REFUSE (correct)
+New resolve_binary with PATH=/tmp/tmp.rgDUu1tbSw/bin:...
+/tmp/tmp.rgDUu1tbSw/bin/agent
+
+Live host (both healthy) resolves to:
+/home/ladwein/.local/bin/cursor-agent
