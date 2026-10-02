@@ -1,0 +1,2 @@
+ok - matrix: grok's real oversized titled bottom is empty while typed and unproved panes stay safe
+ok - matrix: grok's status-line error footer stays empty only when the composer itself is idle

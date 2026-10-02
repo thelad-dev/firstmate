@@ -1,0 +1,43 @@
+Grok composer exit/relaunch gate demo
+generated: 2026-10-02T22:02:55Z
+base: 87fa81b8b7f6912f84658d52d816bb9bcc2c5da6
+head: e7b32c1a8c612e7c51fba2452a94800047c62581
+
+### BEFORE fix (base commit composer lib)
+lib: /tmp/tmp.UZbjmtNsZZ/fm-composer-lib.sh
+
+Live idle capture that blocked exit/relaunch (Grok 1.0.30 herdr):
+  ╭────────────────────────────────────────╮
+  │ ❯                                      │
+  ╰───── Grok 4.7 (high) · always-approve ─╯
+  [status line: exit 127]
+  Shift+Tab:mode  │  Ctrl+.:shortcuts
+
+Gate decisions (same rule as bin/fm-control.sh exit/relaunch):
+idle+status+shortcuts        classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+typed under status           classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+activity under box           classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+shortcuts only               classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+killed-by-signal footer      classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+shortcuts-prefix script      classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+middle-dot title alone       classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+
+### AFTER fix (branch head composer lib)
+lib: /home/ladwein/.no-mistakes/worktrees/0f2624469d68/01M3Z9Z5JPKK8ADT9E6WWF8M6G/bin/fm-composer-lib.sh
+
+Live idle capture that blocked exit/relaunch (Grok 1.0.30 herdr):
+  ╭────────────────────────────────────────╮
+  │ ❯                                      │
+  ╰───── Grok 4.7 (high) · always-approve ─╯
+  [status line: exit 127]
+  Shift+Tab:mode  │  Ctrl+.:shortcuts
+
+Gate decisions (same rule as bin/fm-control.sh exit/relaunch):
+idle+status+shortcuts        classifier=empty    → ALLOW  fm-control would type /exit for relaunch (composer proven empty)
+typed under status           classifier=pending  → REFUSE task demo's composer visibly holds pending text; refusing to type the /exit exit command
+activity under box           classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+shortcuts only               classifier=empty    → ALLOW  fm-control would type /exit for relaunch (composer proven empty)
+killed-by-signal footer      classifier=empty    → ALLOW  fm-control would type /exit for relaunch (composer proven empty)
+shortcuts-prefix script      classifier=unknown  → REFUSE task demo's composer state is 'unknown', not proven empty; refusing to type the /exit exit command
+middle-dot title alone       classifier=empty    → ALLOW  fm-control would type /exit for relaunch (composer proven empty)
+
