@@ -1,0 +1,3 @@
+47:- Ask for the captain's word only when the next step requires a review, approval, merge, or design pick.
+48:- Batch non-urgent updates into the next natural reply.
+49:- Every captain-facing question that needs an answer - a decision, a choice, or a confirmation - goes through `lavish-axi`, never through plain chat or an inline question tool; when bootstrap or diagnostics prove Lavish unavailable (`PRESENTATION_UNAVAILABLE` or equivalent), keep the existing plain-text fallback instead of blocking the question.

@@ -1,0 +1,37 @@
+1:ok - fm-brief: scaffolds leave the worker role scope to the launch boundary and keep the secondmate contract
+2:ok - fm-brief.sh: bash -n succeeds
+4:ok - fm-brief.sh: no heredoc is nested inside a command substitution (Bash 3.2 parse-safe)
+5:ok - fm-brief.sh: --help renders the complete header
+6:ok - fm-brief.sh: no-mistakes/direct-PR/local-only briefs generate cleanly
+7:ok - fm-brief.sh: ship --mode is required and closed-set validated
+8:ok - fm-brief.sh: the explicit ship mode wins over the registered posture
+9:ok - fm-brief.sh: --yolo and scout/secondmate --mode are refused, never silently dropped
+10:ok - fm-brief.sh: faster paths use configured authority without stacked review
+11:ok - fm-brief.sh: no-mistakes DOD keeps its apostrophe prose and bans --yes outright
+12:ok - fm-brief.sh: no-mistakes DOD detects a green PR from the drive call, not a status poll
+13:ok - fm-brief.sh: PR-based done requires a non-draft PR; a deliberate draft declares a wait
+14:ok - fm-brief.sh: no-mistakes ask-user findings use one event plus a verbatim snapshot
+15:ok - fm-brief.sh: ship project-memory wording bounds edits to corrections of wrong information
+16:ok - fm-brief.sh: --herdr-lab emits the complete hard safety contract
+17:ok - fm-brief.sh: --herdr-lab uses its quoted Firstmate-owned helper path
+18:ok - fm-brief.sh: ship and scout scaffolds make omitted Herdr intent fail-visible
+19:ok - fm-brief.sh: the documented {TASK} and {FIRSTMATE_SPEC} fills cannot corrupt the Herdr safety gate
+20:ok - fm-brief.sh: Herdr lab contract covers scouts and rejects secondmate misuse
+21:ok - fm-brief.sh: --no-projects scaffolds a project-less charter and guards misuse
+22:ok - fm-brief.sh: marked requests avoid generic acknowledgements and preserve material reporting
+23:ok - fm-brief.sh: relative directory inputs ignore CDPATH, render stable absolute charter paths, or fail loudly
+24:ok - fm-brief.sh: custom pause verb renders in every scaffold
+25:ok - fm-brief.sh: ship and scout scaffolds declare a validation-round pause once, then hold it
+26:ok - fm-brief.sh: investigation and visual-review completions load the shared decision policy
+27:ok - fm-brief: scout and secondmate code paths still scaffold well-formed briefs
+28:ok - fm-brief.sh: scout Lavish hosting follows the bootstrap lavish-axi floor
+29:ok - fm-brief: workers end the turn on a decision, wait in one bounded shell command, and never poll
+30:ok - fm-brief: without config/wait-no-turns the brief and drive text stay as they were
+31:ok - fm-brief.sh: the home brief include lands last on ship and scout, verbatim, and fails closed
+32:ok - fm-brief.sh: --branch-prefix omitted defaults every ship mode to fm/<task-id>
+33:ok - fm-brief.sh: a --branch-prefix override renders identically across every generated section
+34:ok - fm-brief.sh: an empty --branch-prefix override resolves to a bare <task-id> branch
+35:ok - fm-brief.sh: --branch-prefix is refused on scout and secondmate scaffolds
+36:ok - fm-brief.sh: --branch-prefix value is validated against embedded spaces and a leading dash
+38:ok - fm-brief.sh: ref-format-valid shell metacharacters stay literal in generated branch commands
+39:ok - fm-brief.sh: every crewmate scaffold forbids administering the shared worktree pool

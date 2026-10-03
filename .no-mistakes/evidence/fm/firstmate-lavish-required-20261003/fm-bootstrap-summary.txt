@@ -1,0 +1,28 @@
+21:ok - bootstrap reports treehouse lease + tasks-axi/quota-axi bootstrap contracts
+32:ok - bootstrap enforces no-mistakes minimum version
+47:ok - bootstrap enforces gh-axi minimum version
+68:ok - bootstrap preserves legacy Lavish boards while recommending synchronous reply support
+87:ok - bootstrap enforces tasks-axi minimum version
+102:ok - bootstrap enforces quota-axi minimum version
+103:ok - bootstrap requires git with an install instruction
+108:ok - bootstrap: backend=orca gates the Orca CLI without requiring it on the default backend
+115:ok - bootstrap: session-provider backends require their own CLI + jq + treehouse, never tmux
+122:ok - bootstrap: a session-provider backend gates its own CLI, never a false tmux requirement
+123:ok - bootstrap: Herdr manual-install guidance is never executed as a shell command
+126:ok - bootstrap: the bundled cmux CLI satisfies the active backend dependency
+129:ok - bootstrap: unknown resolved backends fail closed with an actionable diagnostic
+136:ok - bootstrap: JSON-emitting backends require jq (their genuine dep), never tmux
+141:ok - bootstrap: the treehouse lease check follows the resolved backend's worktree provider
+142:ok - bootstrap computes a fleet-size-aware default timeout and preserves partial fleet-sync output
+143:ok - bootstrap keeps the quick 20s default for small fleets
+144:ok - bootstrap preserves FM_FLEET_SYNC_BOOTSTRAP_TIMEOUT as an explicit override
+145:ok - bootstrap treats a blank timeout override as unset
+146:ok - bootstrap computes the timeout before launching fleet sync
+147:ok - bootstrap keeps routine tasks-axi, harness, dispatch, and already-live liveness confirmations silent
+148:ok - bootstrap routine contract runs under system /bin/bash
+155:ok - bootstrap: FM_BOOTSTRAP_NETWORK partitions one run into local and network halves
+156:ok - bootstrap: every deferred mutating sweep rechecks fleet-lock ownership
+157:ok - bootstrap: each deferred network phase, secondmate, and clone records its own elapsed time
+164:ok - bootstrap: the tasks-axi compatibility verdict travels exactly one process hop
+169:ok - bootstrap surfaces active crew-dispatch rules only as verbose BOOTSTRAP_INFO
+296:ok - bootstrap gates resolver fields and additive harnesses on the typed key
