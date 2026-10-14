@@ -1,0 +1,98 @@
+=== AFK spend cap from live worker count at entry ===
+# Demo home: /tmp/afk-spend-live-demo.xV5xs0/home
+
+--- Setup: 6 ordinary workers + 1 secondmate already live ---
+wrote state/task-1.meta kind=ship
+wrote state/task-2.meta kind=ship
+wrote state/task-3.meta kind=ship
+wrote state/task-4.meta kind=ship
+wrote state/task-5.meta kind=ship
+wrote state/task-6.meta kind=ship
+wrote state/mate-1.meta kind=secondmate
+
+$ FM_HOME=$HOME bin/fm-afk-contract.sh live-workers
+6
+
+$ FM_HOME=$HOME bin/fm-afk-contract.sh enter --words 'keep the lane busy'
+Away posture recorded at 2026-10-14T20:34:47Z: hold-for-return only. No phone channel is configured; anything that needs you waits for your return. Your away instructions are recorded verbatim; the away session will carry them out where it can, and anything it is unsure of, or that needs you, waits for your return. Destructive, irreversible, and security-sensitive actions are never pre-authorizable, whatever the words say. Expected return: not given. Spend cap: 6 concurrent workers.
+Away posture (recorded):
+  entered: 2026-10-14T20:34:47Z
+  expected return: not given
+  spend cap: 6 concurrent workers
+  reach: hold-for-return only. No phone channel is configured; anything that needs you waits for your return.
+  your words (verbatim):
+    keep the lane busy
+
+$ FM_HOME=$HOME bin/fm-afk-contract.sh field spend_max_concurrent_workers
+6
+
+--- Spawn a 7th ordinary worker while 6 are live and cap is 6 (must refuse) ---
+$ FM_HOME=$HOME bin/fm-spawn.sh task-new --mode no-mistakes --yolo off
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  7 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  repair a missing or failed watcher cycle with the Pi tool fm_watch_arm_pi, or restart Pi with -e /tmp/afk-spend-live-demo.xV5xs0/root/.pi/extensions/fm-primary-turnend-guard.ts -e /tmp/afk-spend-live-demo.xV5xs0/root/.pi/extensions/fm-primary-pi-watch.ts if the extensions are not loaded.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+error: spawn refused - the away-posture record caps concurrent workers at 6 and 6 ordinary task(s) are live in this home; task task-new stays queued for the captain's return or for a worker to finish (spend cap: bin/fm-afk-contract.sh)
+(exit 1)
+
+--- Below-floor home: 1 ordinary worker → cap stays default 4 ---
+$ FM_HOME=$HOME2 bin/fm-afk-contract.sh live-workers
+1
+$ FM_HOME=$HOME2 bin/fm-afk-contract.sh enter --words 'quiet lane'
+Away posture recorded at 2026-10-14T20:34:49Z: hold-for-return only. No phone channel is configured; anything that needs you waits for your return. Your away instructions are recorded verbatim; the away session will carry them out where it can, and anything it is unsure of, or that needs you, waits for your return. Destructive, irreversible, and security-sensitive actions are never pre-authorizable, whatever the words say. Expected return: not given. Spend cap: 4 concurrent workers.
+Away posture (recorded):
+  entered: 2026-10-14T20:34:49Z
+  expected return: not given
+  spend cap: 4 concurrent workers
+  reach: hold-for-return only. No phone channel is configured; anything that needs you waits for your return.
+  your words (verbatim):
+    quiet lane
+$ field spend_max_concurrent_workers
+4
+
+--- Empty home: 0 workers → floor 4, never 0 ---
+$ live-workers
+0
+$ enter --words 'nothing running'
+Away posture recorded at 2026-10-14T20:34:50Z: hold-for-return only. No phone channel is configured; anything that needs you waits for your return. Your away instructions are recorded verbatim; the away session will carry them out where it can, and anything it is unsure of, or that needs you, waits for your return. Destructive, irreversible, and security-sensitive actions are never pre-authorizable, whatever the words say. Expected return: not given. Spend cap: 4 concurrent workers.
+Away posture (recorded):
+  entered: 2026-10-14T20:34:50Z
+  expected return: not given
+  spend cap: 4 concurrent workers
+  reach: hold-for-return only. No phone channel is configured; anything that needs you waits for your return.
+  your words (verbatim):
+    nothing running
+$ field spend_max_concurrent_workers
+4
+
+--- Explicit --spend still wins over live count of 6 ---
+$ enter --words 'hold it down' --spend 2
+Away posture recorded at 2026-10-14T20:34:50Z: hold-for-return only. No phone channel is configured; anything that needs you waits for your return. Your away instructions are recorded verbatim; the away session will carry them out where it can, and anything it is unsure of, or that needs you, waits for your return. Destructive, irreversible, and security-sensitive actions are never pre-authorizable, whatever the words say. Expected return: not given. Spend cap: 2 concurrent workers.
+Away posture (recorded):
+  entered: 2026-10-14T20:34:50Z
+  expected return: not given
+  spend cap: 2 concurrent workers
+  reach: hold-for-return only. No phone channel is configured; anything that needs you waits for your return.
+  your words (verbatim):
+    hold it down
+$ field spend_max_concurrent_workers
+2
+
+--- Shared counter: spawn live-workers path equals contract live-workers ---
+contract live-workers: 6
+=== done ===
+--- recorded .afk-contract ---
+version: 2
+entered: 2026-10-14T20:34:47Z
+entered_epoch: 1792010087
+expected_return: -
+reach_channels: none
+reach_announced: No phone channel is configured; anything that needs you waits for your return.
+spend_max_concurrent_workers: 6
+confirmed: 2026-10-14T20:34:47Z
+confirmed_epoch: 1792010087
+words: |-
+  keep the lane busy
