@@ -1,0 +1,12 @@
+version=2
+task_id=web-ask
+projection_id=AbCdEfGhIjKlMnOpQrStUv
+home=/home/ladwein/.no-mistakes/evidence/01M4YXGAYS3APS05378SVTSVYJ/herdr-groups-e2e-demo/home-on
+session=s1
+workspace_id=w3
+tab_id=w3:t2
+pane_id=w3:p2
+parent_workspace_id=w1
+parent_label=firstmate
+workspace_label=└ web-ask · p:AbCdEfGhIjKlMnOpQrStUv
+task_label=fm-web-ask

@@ -1,0 +1,5 @@
+{"result":{"workspaces":[
+ {"workspace_id":"w1","label":"firstmate","pane_count":3},
+ {"workspace_id":"w2","label":"└ web-run · p:AbCdEfGhIjKlMnOpQrStUv","pane_count":1},
+ {"workspace_id":"w3","label":"└ web-ask · p:AbCdEfGhIjKlMnOpQrStUv","pane_count":1}
+]}}

@@ -1,0 +1,5 @@
+{"result":{"panes":[
+ {"pane_id":"w1:p1","workspace_id":"w1"},
+ {"pane_id":"w2:p2","workspace_id":"w2"},
+ {"pane_id":"w3:p2","workspace_id":"w3"}
+]}}

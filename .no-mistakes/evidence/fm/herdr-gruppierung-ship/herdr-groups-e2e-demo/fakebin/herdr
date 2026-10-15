@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+{
+  printf 'herdr'
+  for a in "$@"; do printf '\x1f%s' "$a"; done
+  printf '\n'
+} >> "$FAKE_HERDR_LOG"
+case "$1 ${2:-}" in
+  "status --json") printf '{"client":{"version":"0.9.3","protocol":%s},"server":{"running":true}}\n' "${FAKE_HERDR_PROTOCOL:-22}" ;;
+  "workspace list") cat "$FAKE_DIR/workspaces.json" ;;
+  "pane list") cat "$FAKE_DIR/panes.json" ;;
+  "session list") printf '{"sessions":[{"name":"s1","running":true,"socket_path":"/tmp/fm-groups-s1.sock"}]}\n' ;;
+  "pane report-metadata"|"workspace report-metadata") ;;
+  *) exit 1 ;;
+esac
+exit 0

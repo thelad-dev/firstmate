@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+printf '%s\t%s\n' "$1" "$2" >> "$FAKE_VIEW_LOG"
+exit 0

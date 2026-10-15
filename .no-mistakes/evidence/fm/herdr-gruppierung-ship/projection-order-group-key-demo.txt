@@ -1,0 +1,8 @@
+See group-order-test.log for full automated case.
+Observed insert indices from test_projection_order_group_key_places_new_task_inside_its_group:
+  middle 002.Backend -> index 3 (after Web children, before Other)
+  same-group 001.Web -> index 3 (end of own group)
+  first 000.Alpha -> index 1 (block start)
+  last 999.Zed -> index 4 (block end before foreign workspace)
+  untagged sibling present -> new task never lands ahead of untagged child
+  empty group key -> index 4 (legacy block-end placement unchanged)

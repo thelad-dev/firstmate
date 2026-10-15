@@ -1,0 +1,8 @@
+window=s1:w5:p2
+project=/p/api-server
+kind=ship
+backend=herdr
+herdr_session=s1
+herdr_workspace_id=w5
+herdr_tab_id=w5:t2
+herdr_pane_id=w5:p2

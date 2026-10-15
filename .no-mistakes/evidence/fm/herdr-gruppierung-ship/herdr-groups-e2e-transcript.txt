@@ -1,0 +1,78 @@
+=== HERDR PROJECT GROUPS END-USER DEMO ===
+Intent: opt-in grouping by project with status tags + sorted agents view
+
+### A) config/herdr-project-groups ABSENT (must behave exactly as before)
+-- plan (expect empty):
+STDOUT: ''
+-- order-key (expect empty):
+STDOUT: ''
+-- herdr calls while absent: 0 bytes
+-- view calls while absent: 0 bytes
+
+### B) config/herdr-project-groups = on (group by project basename + status rank)
+-- plan TSV (task, group, status, sort-key, group-order-key):
+api-held  api-server  needs-captain  000.api-server.1.api-held  000.api-server
+web-ask   storefront  needs-captain  000.storefront.1.web-ask   000.storefront
+web-done  storefront  done           000.storefront.4.web-done  000.storefront
+web-run   storefront  running        000.storefront.3.web-run   000.storefront
+
+-- order-key for new Backend-ish task under storefront (default group=basename):
+000.storefront
+
+-- sync (display-only metadata + agents view set):
+-- pane report-metadata calls (tokens written to Herdr):
+herdr pane report-metadata w3:p2 --source firstmate --token fm_group=storefront --token fm_state=needs-captain --token fm_task=web-ask --token fm_sort=000.storefront.1.web-ask --session s1
+herdr pane report-metadata w2:p2 --source firstmate --token fm_group=storefront --token fm_state=running --token fm_task=web-run --token fm_sort=000.storefront.3.web-run --session s1
+-- workspace report-metadata calls:
+herdr workspace report-metadata w3 --source firstmate --token fm_group=storefront --token fm_state=needs-captain --token fm_group_order=000.storefront --session s1
+herdr workspace report-metadata w2 --source firstmate --token fm_group=storefront --token fm_state=running --token fm_group_order=000.storefront --session s1
+-- agents view actions:
+/tmp/fm-groups-s1.sock	set
+-- mutations forbidden on sync (move/close/focus must be absent):
+OK: no move/close/focus in herdr log
+
+### C) custom rules file (line order = group rank; task: beats repo: beats *)
+-- plan:
+api-x   Backend  running  002.Backend.3.api-x  002.Backend
+loose   Other    running  003.Other.3.loose    003.Other
+shop-y  Web      running  001.Web.3.shop-y     001.Web
+-- order-key web-new /p/whatever -> expect 001.Web:
+001.Web
+
+### D) inheritance: only config/herdr-project-groups is forwarded when primary created it
+propagate stdout: <empty>
+secondmate config after inherit:
+total 12
+drwxr-xr-x 2 ladwein ladwein 4096 Oct 15 06:46 .
+drwxr-xr-x 3 ladwein ladwein 4096 Oct 15 06:46 ..
+-rw------- 1 ladwein ladwein    3 Oct 15 06:46 herdr-project-groups
+OK: herdr-project-groups inherited; unrelated secret file not copied
+inherited content: on
+
+### E) spawn/watcher call gates: script not invoked without the config file
+spawn gate (absent): SKIPPED order-key (config absent) -> empty key ''
+watcher gate (absent): SKIPPED sync
+spawn gate (on): CALLED order-key -> '000.storefront'
+watcher gate (on): WOULD call sync (display-only)
+
+### F) agent.view.set payload (sorted agents view contract)
+{"id":"fm-agent-view","result":{"type":"agent_view","active":true,"source":"firstmate","label":"projects"}}
+agent.view.set request:
+{"method":"agent.view.set","params":{"label":"projects","sort":[{"field":{"token":"fm_sort"}},{"field":"workspace_order"}],"source":"firstmate"}}
+
+### G) sidebar-config print (no herdr calls)
+
+# Firstmate project groups (docs/herdr-backend.md "Project groups").
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", "workspace"],
+  [{ token = "$fm_group", bold = true }, "$fm_state"],
+]
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", { token = "$fm_group", bold = true }, "$fm_state", "$fm_task"],
+]
+herdr calls during sidebar-config print: 0 bytes
+
+=== DEMO COMPLETE ===

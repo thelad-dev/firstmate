@@ -1,0 +1,3 @@
+Web      task:web repo:storefront
+Backend  task:api
+Other    *

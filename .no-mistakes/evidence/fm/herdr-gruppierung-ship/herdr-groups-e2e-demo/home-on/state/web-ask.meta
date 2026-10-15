@@ -1,0 +1,8 @@
+window=s1:w3:p2
+project=/p/storefront
+kind=ship
+backend=herdr
+herdr_session=s1
+herdr_workspace_id=w3
+herdr_tab_id=w3:t2
+herdr_pane_id=w3:p2
