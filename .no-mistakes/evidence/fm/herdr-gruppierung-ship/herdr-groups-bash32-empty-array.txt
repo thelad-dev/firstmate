@@ -1,0 +1,21 @@
+bash version: GNU bash, version 3.2.57(1)-release (x86_64-pc-linux-musl)
+=== A: plan on, zero tasks ===
+exit=0 out_len=0 out=''
+=== B: only-invalid rules then plan with one task (empty RULE_GROUP during load + resolve) ===
+exit=0
+warning: herdr project groups: /tmp/case/home/config/herdr-project-groups: ignoring rule with invalid group name "Bad/Name" (letters, digits, . _ + - only)
+warning: herdr project groups: /tmp/case/home/config/herdr-project-groups: ignoring rule with invalid group name "!!!" (letters, digits, . _ + - only)
+web-a	storefront	running	999.storefront.3.web-a	999.storefront
+=== C: first rule with empty RULE_GROUP start ===
+exit=0
+web-a	Web	running	001.Web.3.web-a	001.Web
+=== D: order-key ===
+exit=0 out=001.Web
+--- unguarded empty array on bash 3.2 ---
+start
+survived_bang
+bash: TASKS[@]: unbound variable
+start
+start
+survived_plus
+survived_while

@@ -1,0 +1,18 @@
+Bash 3.2 empty-array regression (docker bash:3.2)
+------------------------------------------------
+Unguarded empty TASKS[@] under set -u:
+bash: TASKS[@]: unbound variable
+
+Guarded form used by cmd_plan:
+survived
+
+Pre-fix fm-herdr-groups.sh plan with on + zero tasks:
+PRE-FIX zero tasks plan:
+exit=1 out=/tmp/case/fm-herdr-groups.pre.sh:\ line\ 284:\ TASKS\[@\]:\ unbound\ variable
+
+Post-fix fm-herdr-groups.sh plan with on + zero tasks:
+=== A: plan on, zero tasks ===
+exit=0 out_len=0 out=''
+=== B: only-invalid rules then plan with one task (empty RULE_GROUP during load + resolve) ===
+
+Post-fix first rule / all-invalid / order-key on bash 3.2: all exit 0 (see herdr-groups-bash32-empty-array.txt)

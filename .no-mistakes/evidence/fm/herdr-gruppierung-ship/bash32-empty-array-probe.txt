@@ -1,0 +1,11 @@
+version: GNU bash, version 3.2.57(1)-release (x86_64-pc-linux-musl)
+len=0
+bang_ec=0 bang_out=
+empty_TASKS_at_ec=1 out=bash: line 12: TASKS[@]: unbound variable
+set_empty_TASKS_at_ec=1 out=bash: line 17: TASKS[@]: unbound variable
+plus_ec=0 out=ok
+while_ok
+PRE-FIX zero tasks plan:
+exit=1 out=/tmp/case/fm-herdr-groups.pre.sh:\ line\ 284:\ TASKS\[@\]:\ unbound\ variable
+PRE-FIX first rule load + plan:
+exit=0 out=$'/tmp/case/fm-herdr-groups.pre.sh: line 197: /tmp/case/fm-wake-lib.sh: No such file or directory\nweb-a\tWeb\trunning\t001.Web.3.web-a\t001.Web'

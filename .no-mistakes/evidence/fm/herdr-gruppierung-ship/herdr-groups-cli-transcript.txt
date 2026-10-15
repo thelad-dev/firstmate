@@ -1,0 +1,46 @@
+=== 1) plan with setting on and ZERO herdr tasks (empty TASKS path) ===
+exit=0
+stdout_repr=''
+
+=== 2) rules file: only invalid rules => RULE_GROUP stays empty; plan/resolve still OK ===
+exit=0
+output:
+warning: herdr project groups: /tmp/fm-herdr-groups-e2e.njXSPc/home/config/herdr-project-groups: ignoring rule with invalid group name "Bad/Name" (letters, digits, . _ + - only)
+warning: herdr project groups: /tmp/fm-herdr-groups-e2e.njXSPc/home/config/herdr-project-groups: ignoring rule with invalid group name "!!!" (letters, digits, . _ + - only)
+web-a	storefront	running	999.storefront.3.web-a	999.storefront
+
+=== 3) first valid rule line starts with empty RULE_GROUP (load_setting first append path) ===
+exit=0
+output:
+web-a	Web	running	001.Web.3.web-a	001.Web
+
+=== 4) order-key for rule group and unmatched fallback ===
+order-key web-new => exit=0 out=001.Web
+order-key loose   => exit=0 out=999.tools
+
+=== 5) sync with on + live panes: report tokens + agents view set ===
+exit=0
+sync_stdout=''
+--- herdr report calls ---
+herdr status --json --session s1
+herdr workspace list --session s1
+herdr pane list --session s1
+herdr pane report-metadata w2:p2 --source firstmate --token fm_group=storefront --token fm_state=running --token fm_task=web-a --token fm_sort=000.storefront.3.web-a --session s1
+herdr session list --json --session s1
+--- agents view log ---
+/tmp/fm-groups-s1.sock	set
+
+=== 6) sidebar-config print (operator-facing rows) ===
+exit=0
+
+# Firstmate project groups (docs/herdr-backend.md "Project groups").
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", "workspace"],
+  [{ token = "$fm_group", bold = true }, "$fm_state"],
+]
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", { token = "$fm_group", bold = true }, "$fm_state", "$fm_task"],
+]
