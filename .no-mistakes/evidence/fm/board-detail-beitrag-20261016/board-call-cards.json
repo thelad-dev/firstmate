@@ -1,0 +1,89 @@
+[
+  {
+    "title": "Pick the rollout order",
+    "detail": "Report: https://example.invalid:4388/index.html#sample-task - read it first.",
+    "detailParts": [
+      {
+        "tag": "#text",
+        "text": "Report: ",
+        "href": null,
+        "target": null,
+        "rel": null
+      },
+      {
+        "tag": "a",
+        "text": "https://example.invalid:4388/index.html#sample-task",
+        "href": "https://example.invalid:4388/index.html#sample-task",
+        "target": "_blank",
+        "rel": "noopener"
+      },
+      {
+        "tag": "#text",
+        "text": " - read it first.",
+        "href": null,
+        "target": null,
+        "rel": null
+      }
+    ]
+  },
+  {
+    "title": "Merge the fix",
+    "detail": "Report: https://example.invalid:4388/index.html#merge-task",
+    "detailParts": [
+      {
+        "tag": "#text",
+        "text": "Report: ",
+        "href": null,
+        "target": null,
+        "rel": null
+      },
+      {
+        "tag": "a",
+        "text": "https://example.invalid:4388/index.html#merge-task",
+        "href": "https://example.invalid:4388/index.html#merge-task",
+        "target": "_blank",
+        "rel": "noopener"
+      }
+    ]
+  },
+  {
+    "title": "Log in to the registry",
+    "detail": "The token expired <b>yesterday</b> & nobody renewed it.",
+    "detailParts": [
+      {
+        "tag": "#text",
+        "text": "The token expired <b>yesterday</b> & nobody renewed it.",
+        "href": null,
+        "target": null,
+        "rel": null
+      }
+    ]
+  },
+  {
+    "title": "Approve the write-up",
+    "detail": "See the report (https://example.invalid:4388/index.html#bracket) before answering.",
+    "detailParts": [
+      {
+        "tag": "#text",
+        "text": "See the report (",
+        "href": null,
+        "target": null,
+        "rel": null
+      },
+      {
+        "tag": "a",
+        "text": "https://example.invalid:4388/index.html#bracket",
+        "href": "https://example.invalid:4388/index.html#bracket",
+        "target": "_blank",
+        "rel": "noopener"
+      },
+      {
+        "tag": "#text",
+        "text": ") before answering.",
+        "href": null,
+        "target": null,
+        "rel": null
+      }
+    ]
+  }
+]

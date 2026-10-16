@@ -1,0 +1,7 @@
+board: /tmp/fm-bearings-board-evidence.saOBkH/evidence-detail/.lavish/bearings-board.html
+session:
+  status: opened
+session: live
+served: /tmp/fm-bearings-board-evidence.saOBkH/evidence-detail/.lavish/bearings-board.html
+bound: lavish-e7bba99d4ce7da21
+armed: lavish-e7bba99d4ce7da21

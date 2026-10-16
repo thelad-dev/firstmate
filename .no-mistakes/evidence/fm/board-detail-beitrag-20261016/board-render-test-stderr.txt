@@ -1,0 +1,2 @@
+fm-bearings-board: board data does not satisfy fm-bearings-board.v1: /tmp/fm-bearings-board-render.CXLY1r/charted-order/payload.json
+not ok - the board did not build
