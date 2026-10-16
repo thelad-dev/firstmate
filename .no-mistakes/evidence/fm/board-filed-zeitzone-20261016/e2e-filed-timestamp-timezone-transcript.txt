@@ -1,0 +1,48 @@
+=== End-to-end: board build with filed timestamp under non-UTC TZ ===
+jq version: jq-1.6
+repo: /home/ladwein/.no-mistakes/worktrees/0f2624469d68/01M52HT00QASX8YQ4391R75HJQ
+host date default TZ=<unset>: Fri Oct 16 04:39:07 PM CEST 2026
+
+--- TZ=UTC ---
+payload.filed=2026-08-14T09:30:00Z
+build_exit=0
+board_exists=yes
+built_board.charted[0].filed=2026-08-14T09:30:00Z
+html_contains_timestamp=yes
+invalid_second61_exit=1 (expect non-zero)
+fm-bearings-board: board data does not satisfy fm-bearings-board.v1: /tmp/fm-board-tz-e2e.FTkRG4/e2e-UTC/payload.json
+
+--- TZ=Europe/Berlin ---
+payload.filed=2026-08-14T09:30:00Z
+build_exit=0
+board_exists=yes
+built_board.charted[0].filed=2026-08-14T09:30:00Z
+html_contains_timestamp=yes
+invalid_second61_exit=1 (expect non-zero)
+fm-bearings-board: board data does not satisfy fm-bearings-board.v1: /tmp/fm-board-tz-e2e.FTkRG4/e2e-Europe-Berlin/payload.json
+
+--- TZ=America/New_York ---
+payload.filed=2026-08-14T09:30:00Z
+build_exit=0
+board_exists=yes
+built_board.charted[0].filed=2026-08-14T09:30:00Z
+html_contains_timestamp=yes
+invalid_second61_exit=1 (expect non-zero)
+fm-bearings-board: board data does not satisfy fm-bearings-board.v1: /tmp/fm-board-tz-e2e.FTkRG4/e2e-America-New_York/payload.json
+
+--- TZ=Asia/Kolkata ---
+payload.filed=2026-08-14T09:30:00Z
+build_exit=0
+board_exists=yes
+built_board.charted[0].filed=2026-08-14T09:30:00Z
+html_contains_timestamp=yes
+invalid_second61_exit=1 (expect non-zero)
+fm-bearings-board: board data does not satisfy fm-bearings-board.v1: /tmp/fm-board-tz-e2e.FTkRG4/e2e-Asia-Kolkata/payload.json
+
+=== jq 1.6 regression demonstration (old vs new path) under Europe/Berlin ===
+TZ=Europe/Berlin
+OLD fromdateiso8601 path: "2026-08-14T10:30:00Z"
+NEW strptime|strftime path: "2026-08-14T09:30:00Z"
+second 61 bound check: false
+
+=== done ===
