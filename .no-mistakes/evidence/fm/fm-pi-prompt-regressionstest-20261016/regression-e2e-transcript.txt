@@ -1,0 +1,74 @@
+=== NEW TEST BLOCK (tests/fm-pi-branch-extension.test.sh) ===
+commit 45c505455000c7f84cdc5d7dcf699e667ea33a93
+Author: thelad-dev <ladwein@firstmate.bost8.thelad.loc>
+Date:   Fri Oct 16 06:49:04 2026 +0200
+
+    test(pi): Lauf ohne prompt in before_agent_start festnageln
+    
+    Ein Lauf, den sendCustomMessage startet, traegt eine Custom-Nachricht und
+    keinen prompt. Das Lesen des prompt an dieser Stelle warf, womit jeder
+    solche Lauf mit einem Fehler auftauchte statt zu starten.
+    
+    Die Verengung dagegen steht seit 8c9c67de im Zweig, ein Test, der sie
+    benennt, fehlte: die einzige Abdeckung lag beilaeufig in einem
+    Abbruch-Fall der Abwesenheits-Haltung und verschwindet mit ihm. Der neue
+    Fall erweitert den bestehenden Mirror-Test und prueft, dass ein solcher
+    Lauf weder wirft noch als Dialog gespiegelt wird.
+    
+    Gegenprobe: ohne die Verengung wirft genau dieser Fall mit
+    "Cannot read properties of undefined (reading 'trim')".
+
+diff --git a/tests/fm-pi-branch-extension.test.sh b/tests/fm-pi-branch-extension.test.sh
+index 4a6f8efe..615c897a 100644
+--- a/tests/fm-pi-branch-extension.test.sh
++++ b/tests/fm-pi-branch-extension.test.sh
+@@ -3216,6 +3216,19 @@ if (mirrored.some((m) => m.content.includes("operational injection") || m.conten
+   throw new Error("mirror leaked operational, tool, or merge-note traffic");
+ }
+ 
++// A run that pi.sendCustomMessage starts carries a custom message and no
++// prompt, so reading the prompt here threw and every such run surfaced the
++// failure instead of starting. It is not captain input either, so nothing of
++// it reaches the mirror.
++const mirroredBeforeCustomRun = session.ops.filter((op) => op.kind === "custom").length;
++await fire("before_agent_start", {
++  messageType: "custom",
++  message: { role: "custom", customType: "fm-branch-merge", content: "merge note that starts its own run" },
++}, ctx);
++if (session.ops.filter((op) => op.kind === "custom").length !== mirroredBeforeCustomRun) {
++  throw new Error("a custom-message run was mirrored as captain dialog");
++}
++
+ // The durable cursor advances: a second turn_end mirrors only NEW dialog.
+ entries.push({ type: "message", message: { role: "user", content: "actually, task-7 may merge when green" } });
+ await fire("turn_end", {}, ctx);
+
+=== FIX SITE still present (8c9c67de narrowing) ===
+    // SessionManager still contains only the preceding dialog, so relying on
+    // getEntries() here loses the captain request that the next wake may answer.
+    // Stage it verbatim and remember the future persisted index for turn_end's
+    // duplicate suppression. Operational extension injections are not dialog.
+    if (event.messageType === "custom") {
+      processingOpenedThisRun = isProcessingCustomMessage(event.message) &&
+        queuedProcessingContent !== null && event.message.content === queuedProcessingContent;
+      return;
+    }
+    const prompt = event.prompt;
+    processingOpenedThisRun = queuedProcessingContent !== null && prompt === queuedProcessingContent;
+    const trimmed = prompt.trim();
+    if (!trimmed || isOperationalUserText(trimmed)) return;
+    const file = currentMainSession.getSessionFile() ?? "";
+    const index = mirrorCollection.collectAnchor?.index ?? currentMainSession.getEntries().length;
+    pendingMirror.push({ tag: "captain", text: trimmed });
+
+=== COUNTERPROOF (same custom event, narrowing removed in fixture only) ===
+mutated-ok
+COUNTERPROOF_ERROR=Cannot read properties of undefined (reading 'trim')
+ok - counterproof: without narrowing, custom before_agent_start throws on prompt.trim
+
+=== PASS WITH FIX ===
+=== focused regression: test_branch_mirror_filters_order_and_cursor ===
+=== branch: HEAD @ 45c50545 ===
+=== includes custom before_agent_start case (no prompt) ===
+ok - dialog mirror filters tool and operational traffic, lands before wakes, and keeps a durable cursor
+=== exit: 0 ===

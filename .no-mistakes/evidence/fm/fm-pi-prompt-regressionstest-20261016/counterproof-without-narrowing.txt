@@ -1,0 +1,3 @@
+mutated-ok
+COUNTERPROOF_ERROR=Cannot read properties of undefined (reading 'trim')
+ok - counterproof: without narrowing, custom before_agent_start throws on prompt.trim

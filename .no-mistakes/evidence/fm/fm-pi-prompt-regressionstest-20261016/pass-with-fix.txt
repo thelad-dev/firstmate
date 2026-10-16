@@ -1,0 +1,5 @@
+=== focused regression: test_branch_mirror_filters_order_and_cursor ===
+=== branch: HEAD @ 45c50545 ===
+=== includes custom before_agent_start case (no prompt) ===
+ok - dialog mirror filters tool and operational traffic, lands before wakes, and keeps a durable cursor
+=== exit: 0 ===
