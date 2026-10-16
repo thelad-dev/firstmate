@@ -1,0 +1,2 @@
+launch_cmd codex => codex --dangerously-bypass-approvals-and-sandbox --disable hooks
+ok - recipe carries --disable hooks

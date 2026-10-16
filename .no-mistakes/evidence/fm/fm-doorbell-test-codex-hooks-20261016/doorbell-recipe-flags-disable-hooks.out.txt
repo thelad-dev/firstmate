@@ -1,0 +1,5 @@
+recipe: codex --dangerously-bypass-approvals-and-sandbox --disable hooks
+flags: --dangerously-bypass-approvals-and-sandbox --disable hooks
+hooks_line: hooks                                    stable             false
+ok - doorbell live-e2e launch_cmd codex leaves hooks disabled on codex-cli codex-cli 0.163.0
+fail would fire: codex launch recipe lost --disable hooks; the check would park on the hook-trust modal instead of judging the doorbell

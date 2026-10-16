@@ -1,0 +1,10 @@
+## Recipe under test (launch_cmd codex)
+codex --dangerously-bypass-approvals-and-sandbox --disable hooks
+
+## Effective features with FIXED recipe flags
+hooks                                    stable             false
+
+## Effective features WITHOUT --disable hooks (baseline machine config has hooks=true)
+hooks                                    stable             true
+
+## fm-spawn crewmate launch flags (captured via hook-layer live path)

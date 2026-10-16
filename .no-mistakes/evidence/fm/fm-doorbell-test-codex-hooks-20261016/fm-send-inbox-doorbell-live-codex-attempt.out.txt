@@ -1,0 +1,14 @@
+# codex (codex-cli 0.163.0): idle composer never classified empty; proceeding as production does (advisory check skips only on pending)
+# codex (codex-cli 0.163.0): re-rang the doorbell once (watcher's role) at 22s
+not ok - codex (codex-cli 0.163.0): doorbell not honored within 45s (acted=no acked=no)
+#     Sign in with ChatGPT to use Codex as part of your paid plan
+#     or connect an API key for usage-based billing
+#   > 1. Sign in with ChatGPT
+#        Usage included with Plus, Pro, Business, and Enterprise plans
+#     2. Sign in with Device Code
+#        Sign in from another device with a one-time code
+#     3. Provide your own API key
+#        Pay for what you use
+#     Press enter to continue
+#   Login server error: Login was not completed
+not ok - live steering-inbox doorbell guard found failures above
