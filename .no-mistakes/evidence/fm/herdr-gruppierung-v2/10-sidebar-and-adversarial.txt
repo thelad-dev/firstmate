@@ -1,0 +1,30 @@
+## Scenario: sidebar-config prints rows; --apply backs up and appends once, refuses twice
+base config lines: 380
+appended the project-group sidebar rows to $LAB/herdr-config.toml (backup: $LAB/herdr-config.toml.bak-1792195712); run `herdr server reload-config` to apply them
+apply exit=0
+backup identical to original: yes
+parsed as TOML; ui.sidebar = {"spaces": {"rows": [["state_icon", "workspace"], [{"token": "$fm_group", "bold": true}, "$fm_state"]]}, "agents": {"rows": [["state_icon", {"token": "$fm_group", "bold": true}, "$fm_state", "$fm_task"]]}}
+fm-herdr-groups: $LAB/herdr-config.toml already defines Herdr sidebar rows; merge the suggested rows by hand (fm-herdr-groups.sh sidebar-config prints them)
+second apply exit=1 (expected refusal)
+backups: 1
+fm-herdr-groups: $LAB/missing.toml is not a regular file
+missing file exit=1
+
+## Adversarial: invalid rules warn and are ignored
+warning: herdr project groups: $LAB/adv/config/herdr-project-groups: ignoring rule with invalid group name "Bad/Name" (letters, digits, . _ + - only)
+warning: herdr project groups: $LAB/adv/config/herdr-project-groups: group "Shops": ignoring unknown selector "glob:foo" (task:<prefix>, repo:<name>, or *)
+as400-new	Sonstiges	running
+fm-fail	Sonstiges	problem
+host-run	Sonstiges	running
+infra-blk	Sonstiges	running
+intranet-run	Sonstiges	running
+misc-run	Sonstiges	running
+shop-ask	Shops	done
+shop-done	Shops	problem
+shop-late	Shops	running
+
+## Usage errors
+usage: fm-herdr-groups.sh plan [<task>] | sync [<task>] | clear | order-key <task> <project-path> | sidebar-config [--apply <herdr-config.toml>]
+exit=2
+usage: fm-herdr-groups.sh plan [<task>] | sync [<task>] | clear | order-key <task> <project-path> | sidebar-config [--apply <herdr-config.toml>]
+exit=2

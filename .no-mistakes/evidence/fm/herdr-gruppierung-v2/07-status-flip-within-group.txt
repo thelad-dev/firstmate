@@ -1,0 +1,11 @@
+## Within-group status flip: shop-ask -> done, shop-done stays problem; expect shop-done above shop-ask in agents list
+sync exit=0
+─────────────────────────│
+ agents          projects│
+                         │
+ ○ └ intranet-run · p:DF…│
+   claude                │
+ ○ └ shop-done · p:m2B4B…│
+   claude                │
+ ○ └ shop-ask · p:Q1NN8K…│
+   claude                │

@@ -1,0 +1,50 @@
+## config/herdr-project-groups
+# Captain's seven groups
+Intranet       task:intranet repo:intranet
+Shops          task:shop repo:shop-ddshop
+AS400          task:as400 repo:as400-tools
+Infrastruktur  task:infra repo:infra-tools
+Hosts          task:host
+Firstmate      repo:firstmate
+Sonstiges      *
+
+## $ fm-herdr-groups.sh plan | sort -t$'\t' -k4
+intranet-run  Intranet       running        001.Intranet.3.intranet-run    001.Intranet
+shop-ask      Shops          needs-captain  002.Shops.1.shop-ask           002.Shops
+shop-done     Shops          done           002.Shops.4.shop-done          002.Shops
+as400-new     AS400          running        003.AS400.3.as400-new          003.AS400
+infra-blk     Infrastruktur  problem        004.Infrastruktur.2.infra-blk  004.Infrastruktur
+fm-fail       Firstmate      problem        006.Firstmate.2.fm-fail        006.Firstmate
+misc-run      Sonstiges      running        007.Sonstiges.3.misc-run       007.Sonstiges
+
+## $ fm-herdr-groups.sh sync
+exit=0
+herdr calls:
+status --json --session fm-lab-groups-986835-21412
+workspace list --session fm-lab-groups-986835-21412
+pane list --session fm-lab-groups-986835-21412
+pane report-metadata w8:p1 --source firstmate --token fm_group=AS400 --token fm_state=running --token fm_task=as400-new --token fm_sort=003.AS400.3.as400-new --session fm-lab-groups-986835-21412
+pane report-metadata w7:p1 --source firstmate --token fm_group=Firstmate --token fm_state=problem --token fm_task=fm-fail --token fm_sort=006.Firstmate.2.fm-fail --session fm-lab-groups-986835-21412
+pane report-metadata w5:p1 --source firstmate --token fm_group=Infrastruktur --token fm_state=problem --token fm_task=infra-blk --token fm_sort=004.Infrastruktur.2.infra-blk --session fm-lab-groups-986835-21412
+pane report-metadata w4:p1 --source firstmate --token fm_group=Intranet --token fm_state=running --token fm_task=intranet-run --token fm_sort=001.Intranet.3.intranet-run --session fm-lab-groups-986835-21412
+pane report-metadata w6:p1 --source firstmate --token fm_group=Sonstiges --token fm_state=running --token fm_task=misc-run --token fm_sort=007.Sonstiges.3.misc-run --session fm-lab-groups-986835-21412
+pane report-metadata w3:p1 --source firstmate --token fm_group=Shops --token fm_state=needs-captain --token fm_task=shop-ask --token fm_sort=002.Shops.1.shop-ask --session fm-lab-groups-986835-21412
+pane report-metadata w2:p1 --source firstmate --token fm_group=Shops --token fm_state=done --token fm_task=shop-done --token fm_sort=002.Shops.4.shop-done --session fm-lab-groups-986835-21412
+session list --json --session fm-lab-groups-986835-21412
+
+## live herdr pane list tokens (real Herdr 0.9.5 lab session)
+w1:p1	null
+w2:p1	{"fm_group":"Shops","fm_sort":"002.Shops.4.shop-done","fm_state":"done","fm_task":"shop-done"}
+w3:p1	{"fm_group":"Shops","fm_sort":"002.Shops.1.shop-ask","fm_state":"needs-captain","fm_task":"shop-ask"}
+w4:p1	{"fm_group":"Intranet","fm_sort":"001.Intranet.3.intranet-run","fm_state":"running","fm_task":"intranet-run"}
+w5:p1	{"fm_group":"Infrastruktur","fm_sort":"004.Infrastruktur.2.infra-blk","fm_state":"problem","fm_task":"infra-blk"}
+w6:p1	{"fm_group":"Sonstiges","fm_sort":"007.Sonstiges.3.misc-run","fm_state":"running","fm_task":"misc-run"}
+w7:p1	{"fm_group":"Firstmate","fm_sort":"006.Firstmate.2.fm-fail","fm_state":"problem","fm_task":"fm-fail"}
+w8:p1	{"fm_group":"AS400","fm_sort":"003.AS400.3.as400-new","fm_state":"running","fm_task":"as400-new"}
+
+## second sync (idempotence)
+exit=0
+herdr calls:
+status --json --session fm-lab-groups-986835-21412
+workspace list --session fm-lab-groups-986835-21412
+pane list --session fm-lab-groups-986835-21412

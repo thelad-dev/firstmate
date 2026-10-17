@@ -1,0 +1,45 @@
+ spaces                  │   1      +                                                                                            vm88.dentaldimension.de · 02:06
+                         │[ladwein@vm88 ~]$
+ · firstmate             │
+ ○ └ intranet-run · p:…  │
+ ○ └ shop-done · p:m2B…  │
+ ○ └ shop-ask · p:Q1NN…  │
+ ○ └ as400-new · p:ziu…  │
+ ○ └ infra-blk · p:nNE…  │
+ ○ └ host-run · p:oE85…  │
+ ○ └ fail · p:PdcHwg1K…  │
+ ○ └ misc-run · p:OnfB…  │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+ new                 menu│
+─────────────────────────│
+ agents          projects│
+                         │
+ ○ └ intranet-run · p:DF…│
+   claude                │
+ ○ └ shop-ask · p:Q1NN8K…│
+   claude                │
+ ○ └ shop-done · p:m2B4B…│
+   claude                │
+ ○ └ as400-new · p:ziuxc…│
+   claude                │
+ ○ └ infra-blk · p:nNE1w…│
+   claude                │
+ ○ └ host-run · p:oE85RM…│
+   claude                │
+ ○ └ fail · p:PdcHwg1KfR…│
+   claude                │
+ ○ └ misc-run · p:OnfB5c…│
+   claude                │
+                         │
+                         │
+                        «│

@@ -1,0 +1,27 @@
+## Scenario: feature turned off, then fm-herdr-groups.sh clear
+config/herdr-project-groups present: no
+clear exit=0
+panes with any fm_* token: 0
+workspaces with any fm_* token: 0
+viewer:
+─────────────────────────│
+ agents           grouped│
+                         │
+ ○ └ intranet-run · p:DF…│
+   claude                │
+ ○ └ shop-done · p:m2B4B…│
+   claude                │
+ ○ └ shop-ask · p:Q1NN8K…│
+   claude                │
+ ○ └ as400-new · p:ziuxc…│
+   claude                │
+ ○ └ infra-blk · p:nNE1w…│
+   claude                │
+ ○ └ host-run · p:oE85RM…│
+   claude                │
+ ○ └ fail · p:PdcHwg1KfR…│
+   claude                │
+ ○ └ misc-run · p:OnfB5c…│
+   claude                │
+ ○ └ shop-late · p:7DSp8…│
+   claude                │

@@ -1,0 +1,68 @@
+## Scenario: status changes picked up by one real watcher poll (fm-watch-checkpoint.sh --seconds 10)
+before: shop-ask=running, shop-done=done, infra-blk=problem
+status logs now: shop-ask -> needs-decision, shop-done -> blocked, infra-blk -> needs-decision then resolved
+watcher: signal: $LAB/state/fm-fail.status $LAB/state/host-run.status $LAB/state/infra-blk.status $LAB/state/intranet-run.status $LAB/state/misc-run.status $LAB/state/shop-ask.status $LAB/state/shop-done.status
+report-metadata calls made by the watcher poll:
+pane report-metadata wA:p1 --source firstmate --token fm_state=problem --token fm_sort=002.Shops.2.shop-done --session fm-lab-groups-986835-21412
+pane report-metadata wD:p1 --source firstmate --token fm_state=running --token fm_sort=004.Infrastruktur.3.infra-blk --session fm-lab-groups-986835-21412
+pane report-metadata wE:p1 --source firstmate --token fm_state=needs-captain --token fm_sort=002.Shops.1.shop-ask --session fm-lab-groups-986835-21412
+workspace report-metadata wA --source firstmate --token fm_state=problem --session fm-lab-groups-986835-21412
+workspace report-metadata wD --source firstmate --token fm_state=running --session fm-lab-groups-986835-21412
+workspace report-metadata wE --source firstmate --token fm_state=needs-captain --session fm-lab-groups-986835-21412
+
+live pane tokens (sorted by fm_sort):
+intranet-run	running	001.Intranet.3.intranet-run
+shop-ask	needs-captain	002.Shops.1.shop-ask
+shop-done	problem	002.Shops.2.shop-done
+as400-new	running	003.AS400.3.as400-new
+infra-blk	running	004.Infrastruktur.3.infra-blk
+host-run	running	005.Hosts.3.host-run
+fm-fail	problem	006.Firstmate.2.fm-fail
+misc-run	running	007.Sonstiges.3.misc-run
+
+viewer:
+ spaces                  │   1      +                                                                                            vm88.dentaldimension.de · 02:07
+                         │[ladwein@vm88 ~]$
+ · firstmate             │
+ ○ └ intranet-run · p:…  │
+ ○ └ shop-done · p:m2B…  │
+ ○ └ shop-ask · p:Q1NN…  │
+ ○ └ as400-new · p:ziu…  │
+ ○ └ infra-blk · p:nNE…  │
+ ○ └ host-run · p:oE85…  │
+ ○ └ fail · p:PdcHwg1K…  │
+ ○ └ misc-run · p:OnfB…  │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+ new                 menu│
+─────────────────────────│
+ agents          projects│
+                         │
+ ○ └ intranet-run · p:DF…│
+   claude                │
+ ○ └ shop-ask · p:Q1NN8K…│
+   claude                │
+ ○ └ shop-done · p:m2B4B…│
+   claude                │
+ ○ └ as400-new · p:ziuxc…│
+   claude                │
+ ○ └ infra-blk · p:nNE1w…│
+   claude                │
+ ○ └ host-run · p:oE85RM…│
+   claude                │
+ ○ └ fail · p:PdcHwg1KfR…│
+   claude                │
+ ○ └ misc-run · p:OnfB5c…│
+   claude                │
+                         │
+                         │
+                        «│

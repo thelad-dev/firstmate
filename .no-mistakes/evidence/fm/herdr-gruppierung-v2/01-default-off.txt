@@ -1,0 +1,26 @@
+## Scenario: setting absent (default)
+$ ls config/herdr-project-groups
+ls: Zugriff auf '$LAB/config/herdr-project-groups' nicht möglich: Datei oder Verzeichnis nicht gefunden
+$ fm-herdr-groups.sh plan
+exit=0
+$ fm-herdr-groups.sh sync
+exit=0
+$ fm-herdr-groups.sh order-key shop-ask $LAB/projects/shop-ddshop
+exit=0
+herdr calls made: 0
+$ herdr pane list (lab) tokens:
+{"pane_id":"w1:p1","tokens":null}
+{"pane_id":"w2:p1","tokens":null}
+{"pane_id":"w3:p1","tokens":null}
+{"pane_id":"w4:p1","tokens":null}
+{"pane_id":"w5:p1","tokens":null}
+{"pane_id":"w6:p1","tokens":null}
+{"pane_id":"w7:p1","tokens":null}
+{"pane_id":"w8:p1","tokens":null}
+
+## Scenario: setting 'off'
+$ fm-herdr-groups.sh plan
+exit=0
+$ fm-herdr-groups.sh sync
+exit=0
+herdr calls made: 0

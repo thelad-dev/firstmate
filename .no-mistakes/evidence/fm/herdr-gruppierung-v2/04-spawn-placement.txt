@@ -1,0 +1,53 @@
+## Scenario: spawn-time placement into the project group (real Herdr lab, config = captain's seven groups)
+spawned misc-run (w9) key=007.Sonstiges others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ misc-run   007.Sonstiges running
+spawned shop-done (wA) key=002.Shops others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ shop-done   002.Shops done
+   └ misc-run   007.Sonstiges running
+spawned intranet-run (wB) key=001.Intranet others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ intranet-run   001.Intranet running
+   └ shop-done   002.Shops done
+   └ misc-run   007.Sonstiges running
+spawned fm-fail (wC) key=006.Firstmate others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ intranet-run   001.Intranet running
+   └ shop-done   002.Shops done
+   └ fail   006.Firstmate problem
+   └ misc-run   007.Sonstiges running
+spawned infra-blk (wD) key=004.Infrastruktur others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ intranet-run   001.Intranet running
+   └ shop-done   002.Shops done
+   └ infra-blk   004.Infrastruktur problem
+   └ fail   006.Firstmate problem
+   └ misc-run   007.Sonstiges running
+spawned shop-ask (wE) key=002.Shops others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ intranet-run   001.Intranet running
+   └ shop-done   002.Shops done
+   └ shop-ask   002.Shops needs-captain
+   └ infra-blk   004.Infrastruktur problem
+   └ fail   006.Firstmate problem
+   └ misc-run   007.Sonstiges running
+spawned as400-new (wF) key=003.AS400 others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ intranet-run   001.Intranet running
+   └ shop-done   002.Shops done
+   └ shop-ask   002.Shops needs-captain
+   └ as400-new   003.AS400 running
+   └ infra-blk   004.Infrastruktur problem
+   └ fail   006.Firstmate problem
+   └ misc-run   007.Sonstiges running
+spawned host-run (wG) key=005.Hosts others_unchanged=yes focus_unchanged=yes
+   firstmate   - -
+   └ intranet-run   001.Intranet running
+   └ shop-done   002.Shops done
+   └ shop-ask   002.Shops needs-captain
+   └ as400-new   003.AS400 running
+   └ infra-blk   004.Infrastruktur problem
+   └ host-run   005.Hosts running
+   └ fail   006.Firstmate problem
+   └ misc-run   007.Sonstiges running

@@ -1,0 +1,3 @@
+## herdr config check on the --apply result (HERDR_CONFIG_PATH = disposable copy)
+config: ok
+exit=0

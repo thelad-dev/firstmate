@@ -1,0 +1,45 @@
+ spaces                  │   1      +
+                         │[ladwein@vm88 ~]$
+ · firstmate             │
+ ○ └ intranet-run · p:…  │
+   Intranet · running    │
+ ○ └ shop-done · p:Qud…  │
+   Shops · done          │
+ ○ └ shop-ask · p:P6nL…  │
+   Shops · needs-capta…  │
+ ○ └ as400-new · p:7M6…  │
+   AS400 · problem       │
+ ○ └ fail · p:a9dRSUgx…  │
+   Firstmate · problem   │
+ ○ └ misc-run · p:34fS…  │
+   Sonstiges · running   │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+ new                 menu│
+─────────────────────────│
+ agents          projects│
+                         │
+ ○ Intra… · runn… · intr…│
+ ○ Shops · needs… · shop…│
+ ○ Shops · done · shop-d…│
+ ○ AS400 · probl… · as40…│
+ ○ First… · prob… · fm-f…│
+ ○ Sonst… · runn… · misc…│
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                         │
+                        «│

@@ -1,0 +1,2 @@
+ok - herdr stale registration: an agent process outside the foreground group still counts as alive
+ok - herdr presentation ordering: a group key places only the new workspace inside its group, untagged children stay ahead
