@@ -1,0 +1,6 @@
+Parsed <html> element attributes from .agents/skills/bearings/assets/board-template.html:
+  lang                 = "en"
+  data-lavish-annotate = "off"
+
+PASS: <html> carries data-lavish-annotate="off" alongside lang="en"
+Diff scope: 1 file changed, 1 insertion(+), 1 deletion(-)
