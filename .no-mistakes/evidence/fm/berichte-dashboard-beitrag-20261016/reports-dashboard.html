@@ -293,10 +293,10 @@ body.no-index:not(.drawer) aside { display: none; }
 </main>
 
 <script id="reports-data" type="application/json">
-{"sources":[{"name":"task store","state":"ok","note":"0 tasks"},{"name":"data/backlog.md","state":"absent","note":"not present in this home"},{"name":"data/done-archive.md","state":"absent","note":"not present in this home"},{"name":"data/note-archive.md","state":"absent","note":"not present in this home"}],"entries":[{"id":"example-task","kind":"report","file":"data/example-task/report.md","updated":"20.10.2026 17:33","ts":1792510430,"title":"Example report","html":"\u003ch1 id=\"example-report\">Example report\u003c/h1>\n\u003cp>A rendered report preview.\u003c/p>\n\u003ch2 id=\"outcome\">Outcome\u003c/h2>\n\u003cp>The page lists and displays this report.\u003c/p>"}]}
+{"sources":[{"name":"task store","state":"ok","note":"0 tasks"},{"name":"data/backlog.md","state":"absent","note":"not present in this home"},{"name":"data/done-archive.md","state":"absent","note":"not present in this home"},{"name":"data/note-archive.md","state":"absent","note":"not present in this home"}],"entries":[{"id":"task-visual","kind":"report","file":"data/task-visual/report.md","updated":"20.10.2026 19:19","ts":1792516796,"title":"Weekly report","html":"\u003ch1 id=\"weekly-report\">Weekly report\u003c/h1>\n\u003cp>A readable summary with \u003cstrong>bold text\u003c/strong> and a \u003ca href=\"#details\">section\u003c/a>.\u003c/p>\n\u003ch2 id=\"details\">Details\u003c/h2>\n\u003cul>\n\u003cli>\nFirst item\u003c/li>\n\u003cli>\nSecond item\u003c/li>\n\u003c/ul>"}]}
 </script>
 <script>
-const BUILT = "20.10.2026 17:33";
+const BUILT = "20.10.2026 19:19";
 const DATA = JSON.parse(document.getElementById("reports-data").textContent);
 const REPORTS = DATA.entries;
 const SOURCES = DATA.sources || [];
