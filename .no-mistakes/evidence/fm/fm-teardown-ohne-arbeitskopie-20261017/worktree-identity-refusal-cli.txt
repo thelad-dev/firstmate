@@ -1,0 +1,16 @@
+CLI exit status: 1
+Record unchanged: yes
+Runtime calls: none
+
+Refusal and repair guidance (stderr):
+REFUSED: task manual-space has a missing, empty, or ambiguous worktree identity; preserving task state.
+The record needs exactly one worktree= line naming the copy this task holds: add it, fill it in, or keep only the right one of several, then re-run.
+Find the copy checked out on this task's recorded branch fm/manual-space with:
+git -C /tmp/tmp.gx51jXqiN5/project\ dir worktree list
+A pool slot handed on to another task since is still safe to name: cleanup reads that slot's own .fm-slot-owner claim and then leaves the slot untouched, while a slot with no claim is proved only by that worktree listing.
+
+Command executed exactly as printed:
+git -C /tmp/tmp.gx51jXqiN5/project\ dir worktree list
+
+Command output:
+/tmp/tmp.gx51jXqiN5/project dir  0000000 [master]
