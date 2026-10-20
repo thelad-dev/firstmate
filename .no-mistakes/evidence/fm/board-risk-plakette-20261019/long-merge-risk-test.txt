@@ -1,0 +1,4 @@
+Targeted behavior evidence: bin/fm-test-run.sh tests/fm-bearings-board.test.sh
+
+ok - build refuses a long merge risk with a fixable message
+FM_TEST_END tests/fm-bearings-board.test.sh exit=0 gate_skip=false
