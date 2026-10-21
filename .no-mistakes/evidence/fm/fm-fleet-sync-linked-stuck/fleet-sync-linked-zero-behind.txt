@@ -1,0 +1,6 @@
+== BASIS 8eb9be51
+manuell detached auf origin/main: 3d61c2f
+app-linked: STUCK: on detached HEAD (main checked out in another worktree), 0 commits behind origin/main - needs attention
+== ÄNDERUNG 7f6eb833
+manuell detached auf origin/main: 13062d7
+app-linked: already current (detached at origin/main; main checked out in another worktree)

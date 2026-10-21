@@ -1,0 +1,62 @@
+
+### S1: sauberer verknüpfter Worktree, 1 Commit hinter origin/main
+HEAD app-linked: 9024ed7 branch=DETACHED
+origin/main: 80217f2
+$ fm-fleet-sync.sh projects/app-linked
+app-linked: STUCK: on detached HEAD (main checked out in another worktree), 1 commits behind origin/main - needs attention
+(exit 0)
+HEAD app-linked: 9024ed7 branch=DETACHED
+HEAD app: 9024ed7 branch=main
+lokaler main im Primärklon: 9024ed7
+
+### S2: zweiter Lauf, 0 Commits Rückstand
+$ fm-fleet-sync.sh projects/app-linked
+app-linked: STUCK: on detached HEAD (main checked out in another worktree), 1 commits behind origin/main - needs attention
+(exit 0)
+HEAD app-linked: 9024ed7 branch=DETACHED
+
+### S3: dirty verknüpfter Worktree bleibt STUCK und unangetastet
+$ fm-fleet-sync.sh projects/app-linked
+app-linked: STUCK: on detached HEAD with uncommitted changes, 2 commits behind origin/main - needs attention
+(exit 0)
+HEAD app-linked: 9024ed7 branch=DETACHED
+vorher 9024ed7; diff:  1 file changed, 1 insertion(+)
+
+### S4: verknüpfter Worktree mit eigenem Commit bleibt STUCK und unangetastet
+$ fm-fleet-sync.sh projects/app-linked
+app-linked: STUCK: on detached HEAD with unique commits, 2 commits behind origin/main - needs attention
+(exit 0)
+HEAD app-linked: 92ead55 branch=DETACHED
+vorher 92ead55
+
+### S5: verknüpfter Worktree auf benanntem Nicht-Default-Branch bleibt STUCK
+$ fm-fleet-sync.sh projects/app-linked
+app-linked: STUCK: on branch feature, 1 commits behind origin/main - needs attention
+(exit 0)
+HEAD app-linked: 80217f2 branch=feature
+
+### S6: Primärklon wird normal synchronisiert; lokaler main nicht vom Linked-Lauf bewegt
+$ fm-fleet-sync.sh projects/app-linked
+app-linked: STUCK: on detached HEAD (main checked out in another worktree), 1 commits behind origin/main - needs attention
+(exit 0)
+HEAD app-linked: 80217f2 branch=DETACHED
+lokaler main im Primärklon vor eigenem Sync: 9024ed7
+$ fm-fleet-sync.sh projects/app
+app: synced 9024ed7..e79be7c
+(exit 0)
+HEAD app: e79be7c branch=main
+
+### S7: freier Detached-Klon (Default nirgends ausgecheckt) wird weiterhin 'recovered'
+$ fm-fleet-sync.sh projects/solo
+solo: recovered: re-attached main (already current)
+(exit 0)
+HEAD solo: e79be7c branch=main
+
+### S8: Ganzer Flottenlauf ohne Argument
+$ fm-fleet-sync.sh 
+app: already current
+app-linked: STUCK: on detached HEAD (main checked out in another worktree), 1 commits behind origin/main - needs attention
+solo: already current
+(exit 0)
+
+Lab entfernt: /tmp/fm-lab.gXoPlp
