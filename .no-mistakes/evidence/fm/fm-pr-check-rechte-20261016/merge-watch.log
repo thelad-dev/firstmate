@@ -1,0 +1,13 @@
+$ bash tests/fm-pr-check-security.test.sh
+ok - record keys written after the recorded pr= keep the merge watch authenticating
+ok - an altered merge watch check stays rejected and unexecuted
+ok - bootstrap does not rewrite unauthenticated checks or emit retired migration diagnostics
+ok - watcher signals promptly stop custom checks and clean private state
+ok - returned custom check descendants are drained on installed and fallback timeout paths
+ok - teardown removes safe poll artifacts and refuses directory-shaped check files without traversal
+exit code: 0
+
+$ bash tests/fm-remote-secondmate-relaunch.test.sh
+ok - a remote relaunch keeps an already-armed PR poll authenticating
+ALL TESTS PASSED
+exit code: 0
